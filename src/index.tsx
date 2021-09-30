@@ -5,11 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider } from "@apollo/client";
 import client from "./graphql/client";
+import { BrowserRouter } from 'react-router-dom';
+import MainLayout from './components/hoc/MainLayout';
+import { StylesProvider, createGenerateClassName } from '@mui/styles';
 
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: '--hagglex-web--',
+});
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-    <App />
+    <StylesProvider generateClassName={generateClassName}>
+    <BrowserRouter>
+    <MainLayout />
+    </BrowserRouter>
+    </StylesProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
