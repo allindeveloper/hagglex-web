@@ -1,6 +1,7 @@
 import tinycolor from "tinycolor2";
 
 export const primary = "#2E1963";
+export const lightPrimary = "#F0EBFF";
 const secondary = "#6A4BBC";
 const warning = "#EA3223";
 const success = "#49B621";
@@ -14,9 +15,7 @@ export default {
   palette: {
     primary: {
       main: primary,
-      light: tinycolor(primary)
-        .lighten(lightenRate)
-        .toHexString(),
+      light: lightPrimary,
       dark: tinycolor(primary)
         .darken(darkenRate)
         .toHexString(),

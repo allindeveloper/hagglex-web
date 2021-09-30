@@ -18,6 +18,7 @@ const CustomMenuItem: React.FC<CustomMenuItemProps> = ({isselected, item, onitem
 
     return (
         <div onClick={() => onitemClick?.(item)} className={classes.parentDiv} >
+            <div className={classes.sideItem}>
             <ListItem 
             className={clsx(classes.root, isselected && classes.selected)} 
             
@@ -25,6 +26,7 @@ const CustomMenuItem: React.FC<CustomMenuItemProps> = ({isselected, item, onitem
             <ListItemIcon> <i className={clsx(item.icon,classes.menuIcon)}></i></ListItemIcon>
             <ListItemText primary={item.title} />
         </ListItem>
+        </div>
         </div>
     )
 }
