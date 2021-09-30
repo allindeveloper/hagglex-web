@@ -121,9 +121,7 @@ const SignUp: React.FC<any> = () => {
         <div>
             <Grid container spacing={0} className={classes.container}>
                 <OnboardingRightContainer
-                    description={<>The passage experienced a surge in popularity during <br />the 1960s when Letraset used it on their dry-transfer <br />sheets, and again during
-                        the 90s as desktop publishers <br />bundled the text with their software.
-                    </>}
+                   
                 />
                 <div className={classes.formContainer}>
 
