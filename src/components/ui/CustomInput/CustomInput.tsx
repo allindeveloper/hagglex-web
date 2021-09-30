@@ -26,7 +26,8 @@ export interface CustomInputProps {
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
   customButtonText?: JSX.Element,
   multiline?: boolean,
-  loading?: boolean
+  loading?: boolean,
+  noStyles?:boolean
 }
 
 const CustomInput: FC<CustomInputProps> = ({
@@ -48,7 +49,8 @@ const CustomInput: FC<CustomInputProps> = ({
   inputWidth,
   customButtonText,
   multiline,
-  loading
+  loading,
+  noStyles,
 }) => {
 
   const classes = customInputStyle()
@@ -70,8 +72,8 @@ const CustomInput: FC<CustomInputProps> = ({
           </div>),
           className: className,
           classes: {
-            root: classes.root,
-            input: multiline ? classes.multilineInput : classes.input,
+            root: noStyles? classes.noStyles : classes.root,
+            input: !noStyles ?(multiline ? classes.multilineInput : classes.input):classes.noStyles,
             // notchedOutline: classes.notchedOutline
           },
         }}

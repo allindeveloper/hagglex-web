@@ -9,8 +9,8 @@ const customButtonStyle = makeStyles((theme: Theme) => ({
         fontWeight: theme.typography.fontWeightBold,
         boxShadow: 'none',
         textTransform: 'none',
-        borderRadius: 10,
-        fontSize: 17,
+        borderRadius: '7px !important',
+        fontSize: '15px !important',
         transition: theme.transitions.create(['border-color', 'box-shadow']),
         background: 'linear-gradient(90deg, rgba(67,43,123,1) 24%, rgba(106,75,188,1) 61%, rgba(106,75,188,1) 100%)',
         '&:hover': {

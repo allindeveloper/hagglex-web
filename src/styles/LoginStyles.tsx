@@ -21,51 +21,10 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     left: 0,
   },
   forgotpasswordText:{
-    float:'right',
-    marginTop:'-15px',
-    '& label':{
-      textDecoration:'underline',
-      color:linkColor,
-      cursor:'pointer',
-      margin:0,
-      fontSize:12,
+    color:theme.palette.primary.main,
+    '& b':{
+      fontWeight:600
     }
-  },
-  resendEmailText:{
-    '& label':{
-      color:linkColor,
-      cursor:'pointer',
-      margin:0,
-      fontSize:14,
-      fontWeight:400
-    }
-  },
-  proceedText:{
-    '& label':{
-      color:linkColor,
-      cursor:'pointer',
-      margin:0,
-      fontSize:14,
-      fontWeight:400
-    }
-  },
-  loginbottomleftimage: {
-    position: 'absolute',
-    left: '0px',
-    bottom: '0px'
-  },
-  logincurlyquote: {
-    marginBottom: '40px'
-  },
-  loginbottomrightimage: {
-    position: 'absolute',
-    right: '50%',
-    bottom: '0px'
-  },
-  loginrightangle: {
-    position: 'absolute',
-    right: '60%',
-    top: '65%',
   },
   logotypeContainer: {
     // background: 'rgb(46,25,99)',
@@ -87,16 +46,6 @@ const LoginStyles = makeStyles((theme:Theme) => ({
   logotypeImage: {
     width: 165,
     marginBottom: theme.spacing(4),
-  },
-  logindots: {
-    right: '67%',
-    top: '20%',
-    position: 'absolute',
-    marginBottom: '40px'
-  },
-  loginwriteup: {
-    color: '#fff',
-    lineHeight: '38px'
   },
   loginwriteupcontainer: {
     marginLeft:theme.spacing(12),
@@ -123,13 +72,12 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     },
   },
   signupform: {
-    width: '65%',
+    width: '74%',
     position:'relative',
     backgroundColor:theme.palette.primary.contrastText,
     paddingLeft:theme.spacing(10),
     paddingRight:theme.spacing(10),
-    paddingTop:theme.spacing(13),
-    paddingBottom:theme.spacing(8),
+    
     borderRadius:theme.spacing(1.5),
     [theme.breakpoints.down("md")]: {
       maxWidth: 320,
@@ -139,6 +87,12 @@ const LoginStyles = makeStyles((theme:Theme) => ({
       paddingLeft:0,
       paddingRight:0
 
+    },
+    [theme.breakpoints.down('xl')]:{
+    paddingTop:theme.spacing(0),
+    paddingBottom:theme.spacing(5),
+    paddingLeft:theme.spacing(7),
+    paddingRight:theme.spacing(7),
     },
     [theme.breakpoints.down("xs")]: {
       maxWidth: '100%',
@@ -163,20 +117,6 @@ const LoginStyles = makeStyles((theme:Theme) => ({
   countryCode: {
     paddingLeft: '15px'
   },
-  noaccount: {
-    position: 'absolute',
-    top: '0px',
-    right: '0px',
-    padding: '46px'
-  }
-  ,
-  lockText: {
-    textTransform: 'uppercase',
-    marginLeft: '10px',
-    [theme.breakpoints.down("md")]: {
-      marginLeft: 0
-    },
-  },
   signupBackContainer:{
     position: 'absolute',
     display:'flex',
@@ -189,21 +129,6 @@ const LoginStyles = makeStyles((theme:Theme) => ({
       marginTop:'20px',
       padding:0
     },
-  },
-  steps: {
-    textAlign:'end',
-    position: 'absolute',
-    top: '0px',
-    right: '0px',
-    padding: '25px',
-    '& span:first-child':{
-      fontSize:'17px'
-    },
-
-    '& p':{
-      margin:0
-    },
-    
   },
   business:{
     fontSize:'20px !important',
@@ -221,33 +146,21 @@ const LoginStyles = makeStyles((theme:Theme) => ({
       boxShadow: '0px 4px 10px 3px rgba(0, 0, 0, 0.11)'
     },
   },
-  textField: {
-    // borderBottomColor: theme.palette.background.light,
-    "&:hover:before": {
-      boxShadow: '0px 4px 10px 3px rgba(0, 0, 0, 0.11)'
-    },
+  gotReferralCode: {
+    color:theme.palette.primary.main,
+    '& b':{
+      fontWeight:600,
+      fontSize:13
+    }
   },
-  formButtons: {
-    width: "100%",
-    marginTop: theme.spacing(4),
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  forgetButton: {
-    textTransform: "none",
-    fontWeight: 400,
+  needHelp:{
+    '& small':{
+      color:theme.palette.primary.main,
+      fontWeight:600
+    }
   },
   loginLoader: {
     marginLeft: theme.spacing(4),
-  },
-  copyright: {
-    marginTop: theme.spacing(4),
-    whiteSpace: "nowrap",
-    [theme.breakpoints.up("md")]: {
-      position: "absolute",
-      bottom: theme.spacing(2),
-    },
   },
   loginLogoContainer:{
     display:'flex',
@@ -257,12 +170,6 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     top: '0px',
     left: '0px',
     padding: '46px'
-},
-loginlogoText:{
-    color:theme.palette.primary.contrastText,
-    fontSize:18,
-    marginTop:8,
-    marginLeft:5
 },
 
 }));

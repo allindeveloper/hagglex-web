@@ -13,6 +13,9 @@ const customInputStyle = makeStyles((theme:Theme) => ({
     textField:{
         
     },
+    noStyles:{
+        margin:0
+    },
     inputErrorContainer:{
         display:'flex',
         marginTop:'-7px'
@@ -22,8 +25,8 @@ const customInputStyle = makeStyles((theme:Theme) => ({
     },
     input:{
         paddingLeft:'15px !important',
-        paddingTop:'17px !important',
-        paddingBottom:'17px !important',
+        paddingTop:'13px !important',
+        paddingBottom:'13px !important',
         [theme.breakpoints.down("xl")]: {
             // width:300
           },

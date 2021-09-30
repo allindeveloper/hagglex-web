@@ -1,9 +1,16 @@
-import { createStyles, Theme } from "@mui/material";
-import { makeStyles } from '@mui/styles';
+import {  Theme } from "@mui/material";
+import { makeStyles ,createStyles} from '@mui/styles';
+import { linkColor } from "../theme/default";
 
 
 const GlobalStyles = makeStyles((theme: Theme) =>
     createStyles({
+      '@global': {
+        a:{
+          color:linkColor,
+          fontWeight:'bold'
+        }
+      },
       selectRootPagination:{
         position:'absolute',
         left:'164px',
@@ -11,17 +18,7 @@ const GlobalStyles = makeStyles((theme: Theme) =>
           position:'absolute',
         left:'154px',
         }
-      },
-        proceedText:{
-            '& label':{
-              // color:linkColor,
-              cursor:'pointer',
-              margin:0,
-              fontSize:14,
-              fontWeight:400
-            }
-          },
-          
+      }
     }),
 );
 export default GlobalStyles

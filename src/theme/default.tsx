@@ -62,7 +62,7 @@ export default {
     MuiCssBaseline: {
       '@global': {
         a: {
-          textDecoration: 'none',
+          textDecoration: 'none !important',
           color:primary,
           '&:hover':{
               color:tinycolor(primary)
@@ -87,17 +87,6 @@ export default {
         'Roboto',
       ].join(','),
       
-    },
-    MuiLink: {
-      root: {
-        color: linkColor,
-        textDecoration: 'none',
-        "&:hover": {
-          color: linkColor,
-          opacity: 0.8,
-          textDecoration: 'none !important',
-        }
-      },
     },
    
    

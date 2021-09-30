@@ -11,17 +11,24 @@ import { StylesProvider, createGenerateClassName } from '@mui/styles';
 import { ThemeProvider } from '@mui/material';
 import Themes from "./theme";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import GlobalStyles from './styles/GlobalStyles';
 
 
 const generateClassName = createGenerateClassName({
   productionPrefix: '--hagglex-web--',
 });
+const GlobalStylesC = () => {
+  GlobalStyles();
+
+  return null;
+};
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
     <ThemeProvider theme={Themes.default}>
     <StylesProvider generateClassName={generateClassName}>
     <BrowserRouter>
+    <GlobalStylesC />
     <MainLayout />
     </BrowserRouter>
     </StylesProvider>

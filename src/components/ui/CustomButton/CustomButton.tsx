@@ -13,7 +13,7 @@ export interface CustomButtonProps extends ButtonProps {
     fontSize?: number,
     className?:string
 }
-const CustomButton = ({ show = true, fontSize, loading, text,className, width, height=50, ...rest }: CustomButtonProps) => {
+const CustomButton = ({ show = true, fontSize, loading, text,className, width, height=55, ...rest }: CustomButtonProps) => {
     const classes = customButtonStyle();
     return (
         <>
