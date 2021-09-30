@@ -41,7 +41,7 @@ const SideNav = (props: SideNavProps) => {
     <div>
       <div className={classes.logoContainer}>
         <div><img src={mainbrand} alt="Hagglex" /></div>
-        <div><p className={classes.logoText}><b>Hagglex.</b></p></div>
+        <div><p className={classes.logoText}><b>Hagglex</b></p></div>
       </div>
       <div className={classes.toolbar} />
       <Space bottom={20}/>

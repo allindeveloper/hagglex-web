@@ -8,6 +8,8 @@ import client from "./graphql/client";
 import { BrowserRouter } from 'react-router-dom';
 import MainLayout from './components/hoc/MainLayout';
 import { StylesProvider, createGenerateClassName } from '@mui/styles';
+import { ThemeProvider } from '@mui/material';
+import Themes from "./theme";
 
 
 const generateClassName = createGenerateClassName({
@@ -16,11 +18,13 @@ const generateClassName = createGenerateClassName({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+    <ThemeProvider theme={Themes.default}>
     <StylesProvider generateClassName={generateClassName}>
     <BrowserRouter>
     <MainLayout />
     </BrowserRouter>
     </StylesProvider>
+    </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
