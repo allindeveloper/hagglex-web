@@ -10,6 +10,7 @@ import MainLayout from './components/hoc/MainLayout';
 import { StylesProvider, createGenerateClassName } from '@mui/styles';
 import { ThemeProvider } from '@mui/material';
 import Themes from "./theme";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const generateClassName = createGenerateClassName({
