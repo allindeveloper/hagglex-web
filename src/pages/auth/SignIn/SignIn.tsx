@@ -207,8 +207,8 @@ const SignIn: React.FC<any> = () => {
               <div>
                 <small>
                   <div className="d-flex justify-content-between">
-                    <div className="me-2">Privacy</div>
-                    <div className="ms-4"> Terms & Policy</div>
+                    <div className="me-2"><Typography variant="caption">Privacy</Typography></div>
+                    <div className="ms-4"><Typography variant="caption"> Terms & Policy</Typography></div>
                   </div>
                 </small>
               </div>

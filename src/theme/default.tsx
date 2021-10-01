@@ -9,7 +9,7 @@ const info = "rgba(24, 25, 31, 0.5)s";
 export const linkColor = '#2E1963'
 export const lightenRate = 7.5;
 const darkenRate = 15;
-export const lightGrey = '#FAFAFA';
+export const lightGrey = '#797979';
 export const white = '#ffffff'
 export default {
   palette: {
@@ -77,7 +77,7 @@ export default {
         fontSize: 15,
       },
       caption:{
-        color:'rgba(24, 25, 31, 0.5)',
+        color:lightGrey,
         fontSize:'14px'
       },
       fontFamily: [

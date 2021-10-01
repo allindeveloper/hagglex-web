@@ -18,7 +18,7 @@ const CustomButton = ({ show = true, fontSize, loading, text,className, width, h
     return (
         <>
             {show && <Button
-                className={clsx(classes.root, classes.label,className)}
+                className={clsx(classes.root, classes.label,className,' cursor-pointer')}
                 classes={{
                     disabled: rest.disabled ? classes.disabled : classes.enabled,
                     root: rest.default ? classes.default : ''
