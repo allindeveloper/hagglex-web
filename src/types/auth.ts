@@ -13,3 +13,8 @@ export interface ISignUpRequestPayload {
 export interface ISignUpResponse extends IUser {
 
 }
+
+export interface ILoginRequestPayload {
+    input:string,
+    password:string
+}

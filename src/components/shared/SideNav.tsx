@@ -45,7 +45,6 @@ const SideNav = (props: SideNavProps) => {
       </div>
       <div className={classes.toolbar} />
       <Space bottom={20}/>
-      <Divider />
       <Space top={30}/>
       {navItems}
 

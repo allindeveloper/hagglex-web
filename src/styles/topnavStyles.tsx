@@ -5,7 +5,8 @@ import { drawerWidth } from "../constants/appConstants";
 const topnavStyles = makeStyles((theme: Theme) =>
     createStyles({
         appBar: {
-            backgroundColor:theme.palette.primary.contrastText,
+            backgroundColor:`${theme.palette.primary.contrastText} !important`,
+            boxShadow:'0px 0px 30px #0000001A !important',
             color:theme.palette.primary.dark,
             [theme.breakpoints.up('sm')]: {
                 width: `calc(100% - ${drawerWidth}px)`,
@@ -43,7 +44,6 @@ const topnavStyles = makeStyles((theme: Theme) =>
             '& span': {
                 margin: '0 8px',
                 fontSize:15
-                // color: palette.text.secondary
             },
         },
         pageDescription:{

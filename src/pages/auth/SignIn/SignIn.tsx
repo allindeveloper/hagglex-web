@@ -8,86 +8,65 @@ import LoginStyles from "../../../styles/LoginStyles";
 import OnboardingRightContainer from "../../../components/shared/OnboardingRightContainer";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { signUpErrors } from "../../../utils/validationStates";
+import { signInErrors } from "../../../utils/validationStates";
 import { useRef } from "react";
-import { ISignUpRequestPayload, ISignUpResponse } from "../../../types/SignUp";
+import { ILoginRequestPayload } from "../../../types/auth";
 import { validator, validatorAll } from "../../../utils/validatorFunctions";
 import { linkColor } from "../../../theme/default";
 import { useEffect } from "react";
 import { enterHandler } from "../../../utils/globalUtils";
-
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const SignIn: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
   const classes = LoginStyles();
   const history = useHistory();
   const [togglePassword, settogglePassword] = useState(false);
 
-  const [err, setError] = useState(signUpErrors);
+  const [err, setError] = useState(signInErrors);
   const hasError = useRef<any>(null);
-  const hasErrorTwo = useRef<any>(null);
 
-  const [isError, setisError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [disabled, setdisabled] = useState(false);
-  const [errorText, seterrorText] = useState("");
 
-  const [data, setData] = useState<ISignUpRequestPayload>({
-    email: "",
-    password: "",
-    username: "",
-    phonenumber: "",
+  const [data, setData] = useState<ILoginRequestPayload>({
+    input:"",
+    password:""
   });
 
   const resetForm = () => {
     setData({
-      email: "",
       password: "",
-      username: "",
-      phonenumber: "",
+      input: "",
     });
     history.push("/login");
   };
-  const handleCreateAccount = () => {
-    // this is to make sure the code does not blow
-    // we validate again if the ref value is null
-    if (hasError.current === null) {
-      err.all.forEach((item) => {
-        setError((prevState: any) => ({
-          ...prevState,
-          all: err.all?.delete(item),
-        }));
-      });
-    }
+  const handleSignIn = () => {
     setdisabled(true);
     setLoading(true);
-    seterrorText("");
     validatorAll(
       [
-        { name: "email", value: data.email, label: "Email" },
+        { name: "email", value: data.input, label: "Email" },
         { name: "password", value: data.password, label: "Password" },
-        { name: "username", value: data.username, label: "Username" },
       ],
-      "SignUp",
+      "SignIn",
       setError,
       err,
-      hasErrorTwo
+      hasError
     );
-    if (!hasErrorTwo.current) {
+    if (!hasError.current) {
       setLoading(false);
-      seterrorText("");
       setdisabled(false);
       return;
     }
-    if (Object.keys(hasErrorTwo?.current).length > 0) {
+    if (Object.keys(hasError?.current).length > 0) {
       setdisabled(false);
       setLoading(false);
       return;
     }
-    const payload: ISignUpRequestPayload = {
-      email: data.email,
+    const payload: ILoginRequestPayload = {
+      input: data.input,
       password: data.password,
-      phonenumber: data.phonenumber,
-      username: data.username,
     };
   };
 
@@ -110,7 +89,7 @@ const SignIn: React.FC<any> = () => {
     }));
     validator(
       { name: input, value: target.value, label: label },
-      "SignUp",
+      "SignIn",
       setError,
       err
     );
@@ -136,12 +115,12 @@ const SignIn: React.FC<any> = () => {
                 <Aux>
                   <Space top={20} />
                   <CustomInput
-                    errorText={err.email}
-                    showError={err.email.length > 0}
-                    name="email"
-                    value={data.email}
+                    errorText={err.input}
+                    showError={err.input.length > 0}
+                    name="input"
+                    value={data.input}
                     handleChange={(e) =>
-                      handleCreateFormInputChange("email", "Email", e)
+                      handleCreateFormInputChange("input", "Email", e)
                     }
                     type="text"
                     labelText="Email Address"
@@ -168,7 +147,7 @@ const SignIn: React.FC<any> = () => {
                         style={{ color: linkColor }}
                         onClick={handleTogglePassword}
                       >
-                        {togglePassword ? "Hide" : "Show"}
+                        {togglePassword ? <VisibilityOffIcon/> : <RemoveRedEyeIcon/>}
                       </div>
                     }
                   />
@@ -186,7 +165,12 @@ const SignIn: React.FC<any> = () => {
             </div>
 
             <Space top={25} />
-            <CustomButton text="Sign In" show />
+            <CustomButton 
+            text="Sign In" 
+            disabled={disabled}
+            loading={loading}
+            onClick={handleSignIn}
+            show />
             <Space top={25} />
             <div className="d-flex justify-content-center mb-5">
               <div>

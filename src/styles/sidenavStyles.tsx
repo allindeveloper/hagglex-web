@@ -9,10 +9,16 @@ const sidenavStyles = makeStyles((theme: Theme) =>
             display: 'flex',
         },
         drawer: {
+            [theme.breakpoints.up('xl')]: {
+                display:'flex'
+            },
             [theme.breakpoints.up('sm')]: {
                 width: drawerWidth,
                 flexShrink: 0,
             },
+            '@media only screen and (max-width:600px)': {
+               display:'none'
+              }
         },
         appBar: {
             [theme.breakpoints.up('sm')]: {
@@ -42,6 +48,7 @@ const sidenavStyles = makeStyles((theme: Theme) =>
         toolbar: theme.mixins.toolbar,
         drawerPaper: {
             width: drawerWidth,
+            borderRight:'1px solid transparent !important',
             backgroundColor:'#FAFAFB',
         },
         content: {

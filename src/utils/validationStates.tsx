@@ -7,3 +7,10 @@ export const signUpErrors = {
   all: new Set(),
 };
 
+
+export const signInErrors = {
+  input:"",
+  password:"",
+  all: new Set(),
+};
+

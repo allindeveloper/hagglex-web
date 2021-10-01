@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { signUpErrors } from "../../../utils/validationStates";
 import { useRef } from "react";
-import { ISignUpRequestPayload, ISignUpResponse } from "../../../types/SignUp";
+import { ISignUpRequestPayload, ISignUpResponse } from "../../../types/auth";
 import { validator, validatorAll } from "../../../utils/validatorFunctions";
 import { linkColor } from "../../../theme/default";
 import { useEffect } from "react";

@@ -10,6 +10,7 @@ export const linkColor = '#2E1963'
 export const lightenRate = 7.5;
 const darkenRate = 15;
 export const lightGrey = '#797979';
+export const textBrown = '#562121';
 export const white = '#ffffff'
 export default {
   palette: {
@@ -38,6 +39,7 @@ export default {
       dark: tinycolor(warning)
         .darken(darkenRate)
         .toHexString(),
+      
     },
     success: {
       main: success,
