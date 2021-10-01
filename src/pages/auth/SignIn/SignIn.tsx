@@ -1,4 +1,4 @@
-import { Grid, Typography, Divider, Link, Hidden } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 import Aux from "../../../components/hoc/_Aux";
 import CustomButton from "../../../components/ui/CustomButton/CustomButton";
@@ -7,7 +7,7 @@ import { Space } from "../../../components/ui/Space/Space";
 import LoginStyles from "../../../styles/LoginStyles";
 import OnboardingRightContainer from "../../../components/shared/OnboardingRightContainer";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { signUpErrors } from "../../../utils/validationStates";
 import { useRef } from "react";
 import { ISignUpRequestPayload, ISignUpResponse } from "../../../types/SignUp";
@@ -193,7 +193,9 @@ const SignIn: React.FC<any> = () => {
                 <small>New user ? </small>
               </div>
               <div>
-                <small>Sign up to get started</small>
+              <Link to="/sign-up" className="text-decoration-none ms-2">
+                    Sign up to get started
+                  </Link>
               </div>
             </div>
 

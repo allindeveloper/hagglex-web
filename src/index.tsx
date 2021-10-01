@@ -11,6 +11,7 @@ import { StylesProvider, createGenerateClassName } from '@mui/styles';
 import { ThemeProvider } from '@mui/material';
 import Themes from "./theme";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import GlobalStyles from './styles/GlobalStyles';
 
 

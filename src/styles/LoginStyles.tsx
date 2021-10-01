@@ -42,6 +42,9 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     [theme.breakpoints.down("md")]: {
       display: "none",
     },
+    '& img':{
+      width:'50% !important'
+    }
   },
   logotypeImage: {
     width: 165,
@@ -71,22 +74,45 @@ const LoginStyles = makeStyles((theme:Theme) => ({
       width: "50%",
     },
   },
+  topLeftSquare:{
+    position:'absolute',
+    borderRadius:theme.spacing(2),
+    height:100,
+    width:100,
+    right:'37%',
+    top: '4%',
+    backgroundColor:theme.palette.secondary.main,
+    [theme.breakpoints.down("md")]: {
+      display:'none'
+    } 
+  },
+  bottomRightSquare:{
+    position:'absolute',
+    borderRadius:theme.spacing(2),
+    height:200,
+    width:200,
+    right:'2%',
+    bottom: '2%',
+    backgroundColor:theme.palette.secondary.main,
+    [theme.breakpoints.down("md")]: {
+      display:'none'
+    }  
+  },
   signupform: {
     width: '74%',
+    zIndex:99999,
     position:'relative',
     backgroundColor:theme.palette.primary.contrastText,
     paddingLeft:theme.spacing(10),
     paddingRight:theme.spacing(10),
-    
     borderRadius:theme.spacing(1.5),
     [theme.breakpoints.down("md")]: {
       maxWidth: 320,
       minWidth: '160%',
       marginTop: '50%',
-      paddingTop:0,
-      paddingLeft:0,
-      paddingRight:0
-
+      paddingTop:'0 !important',
+      paddingLeft:'0 !important',
+      paddingRight:'0 !important',
     },
     [theme.breakpoints.down('xl')]:{
     paddingTop:theme.spacing(0),
@@ -94,7 +120,7 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     paddingLeft:theme.spacing(7),
     paddingRight:theme.spacing(7),
     },
-    [theme.breakpoints.down("xs")]: {
+   [theme.breakpoints.down("xs")]: {
       maxWidth: '100%',
       paddingTop:0,
       paddingLeft:0,

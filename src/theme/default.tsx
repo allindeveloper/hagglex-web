@@ -2,11 +2,11 @@ import tinycolor from "tinycolor2";
 
 export const primary = "#2E1963";
 export const lightPrimary = "#F0EBFF";
-const secondary = "#6A4BBC";
+const secondary = "#4F388A";
 const warning = "#EA3223";
 const success = "#49B621";
 const info = "rgba(24, 25, 31, 0.5)s";
-export const linkColor = '#38369A'
+export const linkColor = '#2E1963'
 export const lightenRate = 7.5;
 const darkenRate = 15;
 export const lightGrey = '#FAFAFA';
