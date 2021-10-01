@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import { Space } from "../../components/ui/Space/Space";
 import dashboardStyles from "../../styles/dashboardStyles";
+import LeftSection from "./LeftSection";
 
 const Dashboard = ()=>{
 
@@ -22,7 +22,7 @@ const Dashboard = ()=>{
 
                 <Grid item md={6} xs={12}>
                     <div className={classes.leftCard}>
-
+                        <LeftSection />
                     </div>
                 </Grid>
                 <Grid item md={6} xs={12}>
