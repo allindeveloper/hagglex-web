@@ -9,7 +9,8 @@ const GlobalStyles = makeStyles((theme: Theme) =>
         a:{
           color:linkColor,
           fontWeight:'bold'
-        }
+        },
+        
       },
       selectRootPagination:{
         position:'absolute',

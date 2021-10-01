@@ -26,6 +26,7 @@ const LoginStyles = makeStyles((theme:Theme) => ({
       fontWeight:600
     }
   },
+  
   logotypeContainer: {
     // background: 'rgb(46,25,99)',
     background: 'linear-gradient(90deg, rgba(46,25,99,1) 24%, rgba(79,56,138,1) 100%, rgba(67,43,123,1) 100%)',
@@ -35,9 +36,13 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    color:theme.palette.primary.contrastText,
     // alignItems: "center",
     [theme.breakpoints.down("md")]: {
       width: "50%",
+    },
+    '& .carousel-slider':{
+      overflow:'inherit !important',
     },
     [theme.breakpoints.down("md")]: {
       display: "none",

@@ -10,6 +10,9 @@ const authCarouselStyles = makeStyles((theme: Theme) =>
         justifyItems:'center',
         justifyContent:'center',
         color:'white',
+        position:'relative',
+        bottom:'-30px',
+        marginTop:`${theme.spacing(-4)} !important`
       }
     }),
 );
