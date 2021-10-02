@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 import dashboardStyles from "../../styles/dashboardStyles";
 import LeftSection from "./LeftSection";
@@ -22,6 +22,14 @@ const Dashboard = ()=>{
 
                 <Grid item md={6} xs={12}>
                     <div className={classes.leftCard}>
+                        <div className="d-flex">
+                        <div className="ms-4 mt-4 mb-2">
+                            <Typography className="mt-1"><b>Wallet</b></Typography>
+                        </div>
+                        <div>
+                            
+                        </div>
+                        </div>
                         <LeftSection />
                     </div>
                 </Grid>

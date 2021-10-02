@@ -5,54 +5,74 @@ import Typography from "@mui/material/Typography";
 import { ITabPanels, ITabs } from "../../types/TopNavigation";
 import { TabProps } from "@mui/material";
 import { makeStyles, withStyles } from "@mui/styles";
+import { defaultYellow } from "../../theme/default";
 
 const AntTabs = withStyles((theme: Theme) => ({
   root: {
     borderBottom: "1px solid #e8e8e8",
+    paddingLeft: theme.spacing(3),
+    
   },
   indicator: {
     backgroundColor: theme.palette.primary.main,
-    marginLeft: -5
-  },
+    borderBottom: `5px solid ${defaultYellow} !important`,
+    // marginLeft: -5
+  }
 }))(Tabs);
 
 const AntTab = withStyles((theme: Theme) => ({
   root: {
-    textTransform: "uppercase",
-    minWidth: 72,
+    // textTransform: "uppercase",
+    // minWidth: 72,
     fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),
-    paddingRight: 10,
+    // marginRight: theme.spacing(4),
+    // paddingRight: 10,
     paddingLeft: 0,
+    fontSize:20,
+ 
     "&:hover": {
       color: theme.palette.primary.light,
       opacity: 1,
     },
+    '& .Mui-disabled':{
+      fontSize:30
+    },
     "&$selected": {
       color: theme.palette.primary.dark,
       fontWeight: 600,
+      
     },
     "&:focus": {
       color: theme.palette.primary.light,
+      
       outline: "none",
     },
   },
-  selected: {},
+  
+  selected: {
+    
+  },
+  disabled:{
+    fontSize:30
+  }
 }))((props: TabProps) => <Tab disableRipple {...props} />);
 
 const useStyles = makeStyles((theme:Theme) => ({
   root: {
     flexGrow: 1,
+    
   },
   padding: {
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
   },
   demo1: {
     backgroundColor: theme.palette.background.paper,
-    paddingLeft: theme.spacing(3),
+    // paddingLeft: theme.spacing(3),
+    
     height:'100%'
   },
   demo2: {
+    
     backgroundColor: "#2e1534",
   },
 }));

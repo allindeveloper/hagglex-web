@@ -27,12 +27,10 @@ const dashboardStyles = makeStyles((theme: Theme) =>
     leftCard:{
       borderRadius:theme.spacing(0.5),
       backgroundColor:theme.palette.primary.contrastText,
-      height:300
     },
     rightCard:{
       borderRadius:theme.spacing(0.5),
       backgroundColor:theme.palette.primary.contrastText,
-      height:300
     }
   })
 );

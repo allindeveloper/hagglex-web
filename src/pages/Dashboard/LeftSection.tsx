@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import TopNavigation from "../../components/shared/TopNavigation";
+import FlexWallet from "./FlexWallet";
 
 
 const LeftSection = ()=>{
@@ -32,11 +33,7 @@ const LeftSection = ()=>{
         tabPanels={[
           {
             index: 0,
-            component: (
-              <div>
-                  Flex
-              </div>
-            ),
+            component: <FlexWallet/>
           },
           {
             index: 1,

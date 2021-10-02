@@ -11,6 +11,7 @@ export const lightenRate = 7.5;
 const darkenRate = 15;
 export const lightGrey = '#797979';
 export const textBrown = '#562121';
+export const defaultYellow = '#FFC31A';
 export const white = '#ffffff'
 export default {
   palette: {
