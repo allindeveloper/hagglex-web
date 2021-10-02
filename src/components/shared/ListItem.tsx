@@ -21,7 +21,7 @@ const ListItem = <T,>({image,name,amount,code}: ListItemProps) => {
                 </div>
             </div>
             <div className={classes.listItemRight}>
-                <p>{amount.toFixed(2)} {code}</p>
+                <p className="mb-1">{amount.toFixed(2)} {code}</p>
                 <small>NGN {amount.toFixed(2)}</small>
             </div>
         </div>

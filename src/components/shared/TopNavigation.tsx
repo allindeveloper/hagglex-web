@@ -105,7 +105,9 @@ interface TopNavigationProps {
   tabs?: ITabs[],
   tabPanels?: ITabPanels[],
   tabIndex?: number,
-  history?: any
+  history?: any,
+  backgroundColor?:React.CSSProperties['backgroundColor'],
+  showBottomBorder?:boolean
 }
 const TopNavigation = (props: TopNavigationProps) => {
   const classes = useStyles();
@@ -154,6 +156,10 @@ const TopNavigation = (props: TopNavigationProps) => {
           variant="scrollable"
           scrollButtons="auto"
           aria-label="tabs"
+          style={{
+            border:props.showBottomBorder ? 0:'',
+            backgroundColor:props.backgroundColor
+          }}
         >
           {props.tabs && renderAntTabs(props.tabs)}
         </AntTabs>

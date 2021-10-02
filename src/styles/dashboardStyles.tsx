@@ -31,6 +31,24 @@ const dashboardStyles = makeStyles((theme: Theme) =>
     rightCard:{
       borderRadius:theme.spacing(0.5),
       backgroundColor:theme.palette.primary.contrastText,
+      height:400,
+      
+      paddingTop:theme.spacing(3),
+    },
+    rightCardTop:{
+      backgroundImage: `url(${yellowheader})`,
+      backgroundSize: "cover",
+      height:120,
+      borderRadius:7,
+      paddingLeft:10,
+      paddingTop:15,
+      marginLeft:theme.spacing(4.5),
+      marginRight:theme.spacing(3),
+      '& img':{
+        backgroundColor:theme.palette.primary.contrastText,
+        borderRadius:50,
+        padding:7
+      }
     }
   })
 );

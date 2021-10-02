@@ -21,6 +21,7 @@ const listItemStyles = makeStyles((theme: Theme) =>
         cursor:'pointer'
     },
       '& p':{
+        fontSize:16,
         fontWeight:400,
       },
       '& img':{
