@@ -17,7 +17,7 @@ const listItemStyles = makeStyles((theme: Theme) =>
         paddingRight:20
       },
       '&:hover': {
-        backgroundColor:theme.palette.grey[200],
+        backgroundColor:'#F2F2F2',
         cursor:'pointer'
     },
       '& p':{

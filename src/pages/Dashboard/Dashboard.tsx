@@ -6,6 +6,7 @@ import awesomebitcoin from "../../assets/svg/awesome-bitcoin.svg";
 import TopNavigation from "../../components/shared/TopNavigation";
 import { useHistory } from "react-router";
 import { Space } from "../../components/ui/Space/Space";
+import Send from './Send';
 const Dashboard = () => {
   const classes = dashboardStyles();
   const appTheme = useTheme()
@@ -79,19 +80,19 @@ const Dashboard = () => {
               tabPanels={[
                 {
                   index: 0,
-                  component: <div>Send</div>,
+                  component: <Send />,
                 },
                 {
                   index: 1,
-                  component: <div>Deposit</div>,
+                  component: <div className="m-3">Deposit</div>,
                 },
                 {
                   index: 2,
-                  component: <div>Transfer</div>,
+                  component: <div className="m-3">Transfer</div>,
                 },
                 {
                   index: 3,
-                  component: <div>Transfer History</div>,
+                  component: <div className="m-3">Transfer History</div>,
                 },
               ]}
               tabIndex={tabIndex}

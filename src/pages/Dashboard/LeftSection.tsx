@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import TopNavigation from "../../components/shared/TopNavigation";
+import FlexVault from "./FlexVault";
 import FlexWallet from "./FlexWallet";
 
 
@@ -37,11 +38,7 @@ const LeftSection = ()=>{
           },
           {
             index: 1,
-            component: (
-                <div>
-                Vault
-            </div>
-            ),
+            component: <FlexVault />
           },
           
         ]}
