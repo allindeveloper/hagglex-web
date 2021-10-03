@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -10,6 +10,7 @@ import { Avatar, Chip, Hidden, MenuItem } from "@mui/material";
 import CustomIcon from "../ui/CustomIcon/CustomIcon";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 
 interface TopAppBarProps {
     handleDrawerToggle?: () => void
@@ -18,12 +19,16 @@ const TopAppBar: React.FC<TopAppBarProps> = ({ handleDrawerToggle }) => {
     const classes = topnavStyles()
     const [statusText] = useState("you are live")
     const history = useHistory()
-  
+    const { currentUser ,setLogout} = useContext(AuthContext);
+
     const handleLogout = ()=>{
-        // setLogout()
+        setLogout()
         history.push('/')
     }
 
+    useEffect(()=>{
+        console.log('currentUser',currentUser)
+    },[])
     return (
         <AppBar position="fixed" className={classes.appBar} elevation={0}>
             <Toolbar>
@@ -36,7 +41,7 @@ const TopAppBar: React.FC<TopAppBarProps> = ({ handleDrawerToggle }) => {
                             onClick={handleDrawerToggle}
                             className={classes.menuButton}
                         >
-                            <MenuIcon />
+                            <MenuIcon htmlColor="#000000" className="me-2" />
                         </IconButton>
                         <Typography variant="h6" noWrap>
                            

@@ -33,8 +33,10 @@ const wrapperStyles = makeStyles((theme: Theme) =>
         content: {
             flexGrow: 1,
             overflowX:'auto',
-            paddingTop: theme.spacing(5),
+            paddingTop: theme.spacing(7),
             marginTop:theme.spacing(3),
+            height:'100vh',
+            backgroundColor:'#F4F5F9',
             [theme.breakpoints.down("md")]: {
                 marginTop:theme.spacing(4.1)
               },

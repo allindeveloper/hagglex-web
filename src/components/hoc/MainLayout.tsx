@@ -10,6 +10,7 @@ import { FC } from 'react';
 import SignUp from '../../pages/auth/SignUp/SignUp';
 import AuthLayout from './AuthLayout';
 import ScrollToTop from '../ui/ScrollToTop';
+import VerifyAccount from '../../pages/auth/VerifyAccount/VerifyAccount';
 
 
 interface MainLayoutProps {
@@ -43,6 +44,15 @@ const MainLayout: FC<MainLayoutProps> = () => {
                         exact
                         render={() => (
                             <SignUp
+
+                            />
+                        )}
+                    />
+                    <Route
+                        path={"/verify-account"}
+                        exact
+                        render={() => (
+                            <VerifyAccount
 
                             />
                         )}

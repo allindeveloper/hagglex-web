@@ -6,7 +6,7 @@ const menuitems :any = [
       title: "Dashboard",
       type: "item",
       url: "/app/dashboard",
-      icon: "fi-rr-home",
+      icon: "fa-th-large",
       auth :"CanViewDashboard",
       description:"this is what your dashboard looks like today",
     },
@@ -15,7 +15,7 @@ const menuitems :any = [
       title: "Wallet",
       type: "item",
       url: "/app/wallet",
-      icon: "fi-rr-stats",
+      icon: "fa-wallet",
       auth :"CanViewWallet",
       description:"here is the list of all the transaction you’ve performed"
     },
@@ -24,27 +24,29 @@ const menuitems :any = [
       title: "OTC",
       type: "item",
       url: "/app/otc/",
-      icon: "fi-rr-settings-sliders",
+      icon: "fa-coins",
       auth :"CanViewSettings"
     },
     {
       id: "Savings",
       title: "Savings",
       url: "/app/savings/",
+      icon: "fa-piggy-bank",
       description:"Savings Page",
     },
     {
       id: "more",
       title: "More",
       url: "/app/more/",
+      icon: "fa-plus-square",
       description:"More Page",
     },
     {
-      id: "Signup",
-      title: "Sign Up",
-      url:"/sign-up",
-      description:"Sign Up Page",
-      show:false
+      id: "support",
+      title: "Support",
+      url:"/app/support",
+      icon: "fa-comments",
+      description:"Sign Up Page"
     },
   ]
 export default menuitems
