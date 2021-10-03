@@ -15,6 +15,8 @@ import { validator, validatorAll } from "../../../utils/validatorFunctions";
 import { linkColor } from "../../../theme/default";
 import { useEffect } from "react";
 import { enterHandler } from "../../../utils/globalUtils";
+import { useMutation } from "@apollo/client";
+import { REGISTER_USER } from "../../../graphql/services/auth";
 
 const SignUp: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
@@ -24,13 +26,10 @@ const SignUp: React.FC<any> = () => {
 
   const [err, setError] = useState(signUpErrors);
   const hasError = useRef<any>(null);
-  const hasErrorTwo = useRef<any>(null);
 
-  const [isError, setisError] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [disabled, setdisabled] = useState(false);
-  const [errorText, seterrorText] = useState("");
-
+  const [showReferral, setshowReferral] = useState(false);
+  const [register, { loading }] = useMutation(REGISTER_USER);
   const [data, setData] = useState<ISignUpRequestPayload>({
     email: "",
     password: "",
@@ -47,20 +46,7 @@ const SignUp: React.FC<any> = () => {
     });
     history.push("/login");
   };
-  const handleCreateAccount = () => {
-    // this is to make sure the code does not blow
-    // we validate again if the ref value is null
-    if (hasError.current === null) {
-      err.all.forEach((item) => {
-        setError((prevState: any) => ({
-          ...prevState,
-          all: err.all?.delete(item),
-        }));
-      });
-    }
-    setdisabled(true);
-    setLoading(true);
-    seterrorText("");
+  const handleCreateAccount =  async () => {
     validatorAll(
       [
         { name: "email", value: data.email, label: "Email" },
@@ -70,30 +56,32 @@ const SignUp: React.FC<any> = () => {
       "SignUp",
       setError,
       err,
-      hasErrorTwo
+      hasError
     );
-    if (!hasErrorTwo.current) {
-      setLoading(false);
-      seterrorText("");
+    if (!hasError.current) {
       setdisabled(false);
       return;
     }
-    if (Object.keys(hasErrorTwo?.current).length > 0) {
+    if (Object.keys(hasError?.current).length > 0) {
       setdisabled(false);
-      setLoading(false);
       return;
     }
     const payload: ISignUpRequestPayload = {
       email: data.email,
+      username: data.username,
       password: data.password,
       phonenumber: data.phonenumber,
-      username: data.username,
+      
     };
+    const registerRes = await register({
+      variables: payload,
+    });
+    if (registerRes) {
+      
+    }
+    setdisabled(false);
   };
 
-  const handleNavigate = () => {
-    history.push("/login");
-  };
   const handleTogglePassword = () => {
     settogglePassword(!togglePassword);
   };
@@ -108,14 +96,19 @@ const SignUp: React.FC<any> = () => {
       ...prevState,
       [input]: target?.value,
     }));
-    validator(
-      { name: input, value: target.value, label: label },
-      "SignUp",
-      setError,
-      err
-    );
+    if (input !== "referralCode") {
+      validator(
+        { name: input, value: target.value, label: label },
+        "SignUp",
+        setError,
+        err
+      );
+    }
   };
 
+  const handleShowReferralInput = () => {
+    setshowReferral(true);
+  };
   useEffect(() => {
     enterHandler("finalsignup");
   });
@@ -215,14 +208,37 @@ const SignUp: React.FC<any> = () => {
                 </Aux>
               }
             </Aux>
-            <div>
+            {!showReferral&&<div onClick={handleShowReferralInput}>
               <Typography className={classes.gotReferralCode}>
                 <b>Got referral code ?</b>
               </Typography>
-            </div>
+            </div>}
+            {showReferral && (
+              <CustomInput
+                value={data.referralCode}
+                name="referralCode"
+                handleChange={(e) =>
+                  handleCreateFormInputChange(
+                    "referralCode",
+                    "Referral Code",
+                    e
+                  )
+                }
+                variant="outlined"
+                type="text"
+                id="signup-referralCode"
+                placeholder="Referral code"
+              />
+            )}
 
             <Space top={25} />
-            <CustomButton text="Sign Up" id="finalsignup" show />
+            <CustomButton
+            disabled={disabled}
+            loading={loading}
+
+            text="Sign Up" 
+            id="finalsignup" 
+            show />
             <Space top={20} />
             <div className="d-flex justify-content-center mb-5">
               <div>
@@ -245,16 +261,18 @@ const SignUp: React.FC<any> = () => {
               <div>
                 <small>
                   <div className="d-flex justify-content-between">
-                  <div className="me-2"><Typography variant="caption">Privacy</Typography></div>
-                    <div className="ms-4"><Typography variant="caption"> Terms & Policy</Typography></div>
-                  
+                    <div className="me-2">
+                      <Typography variant="caption">Privacy</Typography>
+                    </div>
+                    <div className="ms-4">
+                      <Typography variant="caption"> Terms & Policy</Typography>
+                    </div>
                   </div>
                 </small>
               </div>
             </div>
           </div>
           <div className={classes.bottomRightSquare}></div>
-
         </div>
       </Grid>
     </div>
