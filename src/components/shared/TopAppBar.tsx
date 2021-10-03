@@ -41,7 +41,7 @@ const TopAppBar: React.FC<TopAppBarProps> = ({ handleDrawerToggle }) => {
                             onClick={handleDrawerToggle}
                             className={classes.menuButton}
                         >
-                            <MenuIcon />
+                            <MenuIcon htmlColor="#000000" className="me-2" />
                         </IconButton>
                         <Typography variant="h6" noWrap>
                            

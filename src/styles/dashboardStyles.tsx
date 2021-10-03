@@ -28,6 +28,7 @@ const dashboardStyles = makeStyles((theme: Theme) =>
     topCardContents:{
       display:'flex',
       justifyContent:'space-between',
+      flexWrap:'wrap',
       alignItems:'center',
       '& p':{
         '& label':{
@@ -139,7 +140,11 @@ const dashboardStyles = makeStyles((theme: Theme) =>
         backgroundColor:theme.palette.primary.contrastText,
         borderRadius:50,
         padding:7
-      }
+      },
+      [theme.breakpoints.down("md")]: {
+        marginLeft:theme.spacing(3),
+        paddingRight:10
+      },
     }
     ,
     leftCardContent:{
@@ -163,6 +168,10 @@ const dashboardStyles = makeStyles((theme: Theme) =>
       marginLeft:theme.spacing(4.5),
       marginRight:theme.spacing(3),
       marginBottom:theme.spacing(3),
+      [theme.breakpoints.down("md")]: {
+        marginLeft:theme.spacing(3),
+        marginRight:theme.spacing(3),
+      },
     },
 
     componentOneRoot:{

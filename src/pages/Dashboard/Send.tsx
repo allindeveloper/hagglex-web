@@ -16,6 +16,9 @@ const Send = () => {
   const matchesMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("md")
   );
+  const matchesXS = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("xs")
+  );
 
   const handleClickTab = (index: number) => {
     setselected(index);
@@ -58,6 +61,7 @@ const Send = () => {
                   fontWeight={400}
                   fontSize={40}
                   className="mt-0"
+                  placeholder=""
                   endIcon={
                     <div
                       style={{
@@ -66,9 +70,9 @@ const Send = () => {
                         bottom: "16%",
                       }}
                     >
-                      <small className="ms-2">
+                      {!matchesMobile&&<small className="ms-2">
                         <b>NGN</b>
-                      </small>
+                      </small>}
                     </div>
                   }
                   handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -106,9 +110,9 @@ const Send = () => {
             />
             <CustomButton text="Send BTC" className="mt-4" />
             <Space top={60} />
-            <Divider light/>
+            <Divider light />
             <Space top={25} />
-            <ol>
+            <ol className="pb-3">
               <li>
                 <small>Paste a BTC address only through this means.</small>
               </li>

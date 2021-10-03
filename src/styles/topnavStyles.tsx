@@ -20,7 +20,7 @@ const topnavStyles = makeStyles((theme: Theme) =>
             color:`${theme.palette.primary.contrastText} !important`
         },
         menuButton: {
-            marginRight: theme.spacing(2),
+            marginRight: theme.spacing(5),
             [theme.breakpoints.up('sm')]: {
                 display: 'none',
             },

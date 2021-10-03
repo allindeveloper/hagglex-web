@@ -8,7 +8,6 @@ const doubleTabSectionStyles = makeStyles((theme: Theme) =>
     root: {
      borderRadius:10,
      boxShadow:'0px 3px 50px #00000021',
-     height:600,
      marginBottom:30
     },
     tabHeaderRoot:{
