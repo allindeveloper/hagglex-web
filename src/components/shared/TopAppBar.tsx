@@ -14,12 +14,12 @@ import AuthContext from "../../context/AuthContext";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { linkColor } from "../../theme/default";
 import CustomBadge from "../ui/CustomBadge/CustomBadge";
+import { invokeAvatarInitials } from "../../utils/globalUtils";
 interface TopAppBarProps {
   handleDrawerToggle?: () => void;
 }
 const TopAppBar: React.FC<TopAppBarProps> = ({ handleDrawerToggle }) => {
   const classes = topnavStyles();
-  const [statusText] = useState("you are live");
   const history = useHistory();
   const { currentUser, setLogout } = useContext(AuthContext);
 
@@ -29,7 +29,6 @@ const TopAppBar: React.FC<TopAppBarProps> = ({ handleDrawerToggle }) => {
   };
 
   useEffect(() => {
-    console.log("currentUser", currentUser);
   }, []);
   return (
     <AppBar position="fixed" className={classes.appBar} elevation={0}>
@@ -54,10 +53,10 @@ const TopAppBar: React.FC<TopAppBarProps> = ({ handleDrawerToggle }) => {
             <CustomMenuWrapper
               menuButton={
                 <div className={classes.userMenu}>
-                  <Avatar className="cursor-pointer">UP</Avatar>
+                  <Avatar className="cursor-pointer">{invokeAvatarInitials(currentUser.username)}</Avatar>
                   <Hidden xsDown>
                     <Typography variant="caption">
-                      <label>Uchendu Precious</label>
+                      <label>{currentUser.username}</label>
                     </Typography>
                   </Hidden>
                   <CustomIcon className="fas fa-caret-down" />

@@ -24,6 +24,18 @@ export const maskEmail = (email:string)=>{
     return "";
   }
 }
+export const invokeAvatarInitials = (name:string) => {
+  let firstPart,secondPart;
+  if(name.includes(" ")){
+    const newName = name.split(" ")
+    firstPart = newName?.[0]
+    secondPart = newName?.[1]
+  }else{
+    firstPart = name.charAt(0).toUpperCase()
+    secondPart = name.charAt(1).toUpperCase()
+  }
+  return `${firstPart}${secondPart}`
+};
 export const isValidUrl = (value: string) => {
   var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
