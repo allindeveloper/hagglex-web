@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import DoubleTabSections from "../../components/shared/DoubleTabSections";
 import CustomButton from "../../components/ui/CustomButton/CustomButton";
-import CustomFormatInput from "../../components/ui/CustomInput/CustomFormatInput";
 import CustomInput from "../../components/ui/CustomInput/CustomInput";
 import { Space } from "../../components/ui/Space/Space";
 import dashboardStyles from "../../styles/dashboardStyles";
-import { NumberFormatValues } from "react-number-format";
 import { Divider, Theme, useMediaQuery } from "@mui/material";
 import updown from "../../assets/svg/updown.svg";
 type SendT = {
@@ -38,16 +36,6 @@ const Send = () => {
     }));
   };
 
-  const handleCustomValueChange = (
-    input: string,
-    values: NumberFormatValues
-  ) => {
-    debugger;
-    setData((prevState) => ({
-      ...prevState,
-      [input]: values?.value,
-    }));
-  };
   return (
     <div className={classes.sendRoot}>
       <DoubleTabSections
@@ -60,19 +48,6 @@ const Send = () => {
             <p className="mb-0">
               <b>Amount to Send</b>
             </p>
-            {/* <CustomInput 
-            value="0.00N" 
-            variant="standard"
-             /> */}
-            {/* <CustomFormatInput
-              variant="standard"
-              value={data.amount}
-              name="amount"
-              type="text"
-              endIcon={<div style={{position:'absolute',left:`${40}%`,top:'16%'}}><small><b>NGN</b></small></div>}
-              inputWidth={matchesMobile?55:30}
-              onValueChange={(values:NumberFormatValues)=>handleCustomValueChange('amount',values)}
-              /> */}
             <div className="d-flex justify-content-start">
               <div>
                 <CustomInput
@@ -131,13 +106,19 @@ const Send = () => {
             />
             <CustomButton text="Send BTC" className="mt-4" />
             <Space top={60} />
-            <Divider />
+            <Divider light/>
             <Space top={25} />
-             <ol>
-                 <li><small>Paste a BTC address only through this means.</small></li>
-                 <li><small>Sending coins or token other than BTC to this address may result in the loss of your tokens</small></li>
-                 </ol>
-            
+            <ol>
+              <li>
+                <small>Paste a BTC address only through this means.</small>
+              </li>
+              <li>
+                <small>
+                  Sending coins or token other than BTC to this address may
+                  result in the loss of your tokens
+                </small>
+              </li>
+            </ol>
           </div>
         }
         componentTwo={<div></div>}

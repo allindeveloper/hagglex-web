@@ -1,5 +1,6 @@
 import { Theme } from "@mui/material";
 import { makeStyles, createStyles } from "@mui/styles";
+import { borderRadius } from "@mui/system";
 import yellowheader from "../assets/images/yellowheader.png";
 import { textBrown } from "../theme/default";
 
@@ -21,9 +22,58 @@ const dashboardStyles = makeStyles((theme: Theme) =>
       fontWeight:'bold',
       '& h1':{
         fontWeight:'bold',
+        fontSize:50
       }
     },
-
+    topCardContents:{
+      display:'flex',
+      justifyContent:'space-between',
+      alignItems:'center',
+      '& p':{
+        '& label':{
+          fontWeight:400
+        }
+      }
+    },
+    topCardContentsRight:{
+      backgroundColor:theme.palette.primary.contrastText,
+      borderRadius:50,
+      height:'100%',
+      padding:'2.5px 10px 2.5px 10px',
+      boxShadow:'0px 3px 6px #00000029',
+      display:'flex',
+      textAlign:'center',
+      justifyContent:'space-between',
+      cursor:'pointer',
+      opacity:1,
+      transition:'opacity  1s linear*',
+      '& label':{
+        marginLeft:24,
+        marginRight:24,
+        marginTop:10,
+        marginBottom:10,
+        cursor:'pointer',
+      }
+    },
+    topCardContentsRightButtonNotSelected:{
+      margin:'auto',
+      cursor:'pointer',
+      '& label':{
+        fontWeight:300
+      }
+    },
+    topCardContentsRightButtonSelected:{
+      cursor:'pointer',
+      boxShadow:'0px 3px 6px #00000029',
+      border:'1px solid #FFFFFF',
+      borderRadius:40,
+      height:50,
+      padding:'1px 10px 1px 10px',
+      '& label':{
+        marginTop:12,
+      },
+      background:'#FFC175 0% 0% no-repeat padding-box'
+    },
     leftCard:{
       borderRadius:theme.spacing(1.5),
       backgroundColor:theme.palette.primary.contrastText,
@@ -34,7 +84,13 @@ const dashboardStyles = makeStyles((theme: Theme) =>
       height:'100%',
       paddingTop:theme.spacing(3),
     },
+    rightCardTopText:{
+      color:textBrown,
+      marginLeft:20
+    },
     rightCardTop:{
+      display:'flex',
+      justifyContent:'flex-start',
       backgroundImage: `url(${yellowheader})`,
       backgroundSize: "cover",
       height:120,
@@ -67,15 +123,23 @@ const dashboardStyles = makeStyles((theme: Theme) =>
     componentOneRoot:{
       '& p':{
         color:'#000000',
+      },
+      '& ol':{
+        '& li':{
+          listStyleType:'disc'
+        },
+        '& small':{
+          fontSize:11
+        }
       }
-      
     },
     sendTo:{
        color:'#000000',
        fontWeight:600,
        marginBottom:0,
        fontSize:16 
-    }
+    },
+   
   })
 );
 export default dashboardStyles;

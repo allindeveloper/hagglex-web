@@ -91,6 +91,12 @@ export default {
       ].join(','),
       
     },
+
+    MuiDivider:{
+      light:{
+        backgroundColor:'#F3F3F3'
+      }
+    }
    
    
   },

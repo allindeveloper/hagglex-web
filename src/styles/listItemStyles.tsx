@@ -24,6 +24,10 @@ const listItemStyles = makeStyles((theme: Theme) =>
       "&:last-child:hover": {
         borderBottomLeftRadius: theme.spacing(1.5),
         borderBottomRightRadius: theme.spacing(1.5),
+        paddingBottom:20
+      },
+      "&:last-child": {
+       paddingBottom:20
       },
       "& p": {
         fontSize: 16,

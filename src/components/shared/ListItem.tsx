@@ -1,5 +1,6 @@
 import React from "react";
 import listItemStyles from "../../styles/listItemStyles";
+import { Space } from "../ui/Space/Space";
 
 export interface ListItemProps {
     image: any,

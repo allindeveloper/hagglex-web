@@ -10,7 +10,12 @@ const GlobalStyles = makeStyles((theme: Theme) =>
           color:linkColor,
           fontWeight:'bold'
         },
-        
+        hr:{
+          '& .MuiDivider-light':{
+            backgroundColor:'#F3F3F3'
+          }
+          // backgroundColor:'#F3F3F3'
+        }
       },
       selectRootPagination:{
         position:'absolute',

@@ -42,7 +42,7 @@ const DoubleTabSections: React.FC<IDoubleTabSections> = ({
           <p><b>{labelTwo}</b></p>
         </Grid>
       </Grid>
-      <Divider />
+      <Divider light/>
 
       {selected === 1 && <div className={classes.components}>{componentOne}</div>}
       {selected === 2 && <div className={classes.components}>{componentTwo}</div>}
