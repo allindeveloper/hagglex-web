@@ -31,7 +31,34 @@ const authCarouselStyles = makeStyles((theme: Theme) =>
           marginBottom:30
         }
       },
-     
+      circlesRoot:{
+        display:'flex',
+        justifyContent:'space-around',
+        marginTop:5,
+        marginLeft:5,
+        marginRight:5
+      },
+      activeCircle:{
+        marginRight:8,
+        marginLeft:8,
+        borderRadius:85,
+        height:7,
+        width:7,
+        backgroundColor:theme.palette.secondary.contrastText,
+        opacity:0.5,
+        padding:8,
+        cursor:'pointer'
+      },
+      inactiveCircle:{
+        marginRight:8,
+        marginLeft:8,
+        borderRadius:85,
+        height:7,
+        width:7,
+        backgroundColor:theme.palette.secondary.light,
+        padding:8,
+        cursor:'pointer'
+      }
     }),
 );
 export default authCarouselStyles

@@ -4,6 +4,7 @@ import authCarouselStyles from "../../styles/authCarouselStyles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useTheme } from "@mui/material";
+import clsx from "clsx";
 interface IAuthCarousel {
   children?: ReactChild[];
 }
@@ -24,18 +25,24 @@ const AuthCarousel = ({ children }: IAuthCarousel) => {
       setcurrentSlide(index);
     }
   };
+ const handleSetSlide = (index:number)=>{
+    setcurrentSlide(index);
+  }
   const renderIndicators = (
     clickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
     isSelected: boolean,
     index: number,
     label: string
   ) => {
+
+   
     return (
       <>
         {isSelected && (
           <div className={classes.indicatorsRoot}>
             <div className="me-5 cursor-pointer" onClick={prev}>
               <ArrowBackIosIcon
+              fontSize="small"
                 htmlColor={
                   currentSlide === 0
                     ? appTheme.palette.secondary.main
@@ -43,9 +50,23 @@ const AuthCarousel = ({ children }: IAuthCarousel) => {
                 }
               />
             </div>
-            <div>igoioij</div>
+            
+            <div className={classes.circlesRoot}>
+              {children &&
+                children?.map((item, i) => (
+                  <div
+                   onClick={()=>handleSetSlide(i)}
+                    className={clsx(
+                      index === i
+                        ? classes.activeCircle
+                        : classes.inactiveCircle
+                    )}
+                  ></div>
+                ))}
+            </div>
             <div className="ms-5 cursor-pointer" onClick={next}>
               <ArrowForwardIosIcon
+              fontSize="small"
                 htmlColor={
                   currentSlide === 2
                     ? appTheme.palette.secondary.main
