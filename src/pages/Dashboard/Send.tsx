@@ -6,8 +6,8 @@ import CustomInput from "../../components/ui/CustomInput/CustomInput";
 import { Space } from "../../components/ui/Space/Space";
 import dashboardStyles from "../../styles/dashboardStyles";
 import { NumberFormatValues } from "react-number-format";
-import { Theme, useMediaQuery } from "@mui/material";
-import updown from '../../assets/svg/updown.svg'
+import { Divider, Theme, useMediaQuery } from "@mui/material";
+import updown from "../../assets/svg/updown.svg";
 type SendT = {
   amount: string;
   address: string;
@@ -73,40 +73,45 @@ const Send = () => {
               inputWidth={matchesMobile?55:30}
               onValueChange={(values:NumberFormatValues)=>handleCustomValueChange('amount',values)}
               /> */}
-              <div className="d-flex justify-content-start">
-                  <div>
-                  <CustomInput
-              variant="standard"
-              value={data.amount}
-              name="amount"
-              type="number"
-              fontWeight={400}
-              fontSize={40}
-              className="mt-0"
-              endIcon={
-                <div
-                  style={{
-                    position: "absolute",
-                    left: `${data.amount.length / 0.17}%`,
-                    bottom: "16%",
-                  }}
-                >
-                  <small className="ms-2">
-                    <b>NGN</b>
-                  </small>
-                </div>
-              }
-              handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleCreateFormInputChange("amount", "Amount", e)
-              }
-            inputContainerclassName="mt-0"
-            />
-                      </div>
-                      <div className="mt-5 ms-1">
-                          <img className="mt-1" src={updown} width={'90%'} height={'90%'}/>
-                      </div>
+            <div className="d-flex justify-content-start">
+              <div>
+                <CustomInput
+                  variant="standard"
+                  value={data.amount}
+                  name="amount"
+                  type="number"
+                  fontWeight={400}
+                  fontSize={40}
+                  className="mt-0"
+                  endIcon={
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: `${data.amount.length / 0.17}%`,
+                        bottom: "16%",
+                      }}
+                    >
+                      <small className="ms-2">
+                        <b>NGN</b>
+                      </small>
+                    </div>
+                  }
+                  handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleCreateFormInputChange("amount", "Amount", e)
+                  }
+                  inputContainerclassName="mt-0"
+                />
+              </div>
+              <div className="mt-5 ms-1">
+                <img
+                  className="mt-1"
+                  src={updown}
+                  width={"90%"}
+                  height={"90%"}
+                />
+              </div>
             </div>
-            
+
             <Space top={20} />
             <p className={classes.sendTo}>Send to</p>
             <CustomInput
@@ -125,6 +130,14 @@ const Send = () => {
               }
             />
             <CustomButton text="Send BTC" className="mt-4" />
+            <Space top={60} />
+            <Divider />
+            <Space top={25} />
+             <ol>
+                 <li><small>Paste a BTC address only through this means.</small></li>
+                 <li><small>Sending coins or token other than BTC to this address may result in the loss of your tokens</small></li>
+                 </ol>
+            
           </div>
         }
         componentTwo={<div></div>}

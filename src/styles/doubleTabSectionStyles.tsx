@@ -6,9 +6,10 @@ import { textBrown } from "../theme/default";
 const doubleTabSectionStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-     borderRadius:5,
+     borderRadius:10,
      boxShadow:'0px 3px 50px #00000021',
-     height:500,
+     height:600,
+     marginBottom:30
     },
     tabHeaderRoot:{
       cursor:'pointer',

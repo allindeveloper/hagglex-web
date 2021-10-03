@@ -40,7 +40,7 @@ const Dashboard = () => {
             <LeftSection />
           </div>
         </Grid>
-        <Grid item md={6} xs={12}>
+        <Grid item md={6} xs={12} className="mb-4">
           <div className={classes.rightCard} >
             <div className={classes.rightCardTop}>
               <div>
@@ -48,7 +48,7 @@ const Dashboard = () => {
               </div>
             </div>
             <Space top={30}/>
-            <div >
+            <div>
             <TopNavigation
               id={tabIndex}
               handlesetTabIndex={handlesetTabIndex}

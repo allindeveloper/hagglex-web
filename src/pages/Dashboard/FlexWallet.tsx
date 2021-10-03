@@ -11,7 +11,10 @@ import dogecoin from "../../assets/svg/dogecoin.svg";
 import usdt from "../../assets/images/usdt.png";
 
 import { IFlexWallet } from "../../types/dashboard";
+import dashboardStyles from "../../styles/dashboardStyles";
 const FlexWallet = () => {
+
+    const classes = dashboardStyles()
   const flexWalletItems: IFlexWallet[] = [
     {
       image: haggle,
@@ -64,7 +67,7 @@ const FlexWallet = () => {
   ];
 
   return (
-    <div>
+    <div className={classes.leftCardContent}>
       {flexWalletItems.map((item, index) => (
         <ListItem<IFlexWallet> {...item} key={index} />
       ))}

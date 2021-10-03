@@ -66,7 +66,6 @@ const useStyles = makeStyles((theme:Theme) => ({
     // padding: theme.spacing(3),
   },
   demo1: {
-    backgroundColor: theme.palette.background.paper,
     // paddingLeft: theme.spacing(3),
     
     height:'100%'

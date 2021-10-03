@@ -25,14 +25,13 @@ const dashboardStyles = makeStyles((theme: Theme) =>
     },
 
     leftCard:{
-      borderRadius:theme.spacing(0.5),
+      borderRadius:theme.spacing(1.5),
       backgroundColor:theme.palette.primary.contrastText,
     },
     rightCard:{
-      borderRadius:theme.spacing(0.5),
+      borderRadius:theme.spacing(1.5),
       backgroundColor:theme.palette.primary.contrastText,
       height:'100%',
-      
       paddingTop:theme.spacing(3),
     },
     rightCardTop:{
@@ -49,6 +48,11 @@ const dashboardStyles = makeStyles((theme: Theme) =>
         borderRadius:50,
         padding:7
       }
+    }
+    ,
+    leftCardContent:{
+      borderBottomLeftRadius:theme.spacing(1.5),
+      borderBottomRightRadius:theme.spacing(1.5),
     }
 
     // Send
