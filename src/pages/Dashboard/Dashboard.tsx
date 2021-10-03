@@ -15,7 +15,7 @@ const Dashboard = () => {
   const appTheme = useTheme();
   const [tabIndex, settabIndex] = useState(0);
   const history = useHistory();
-  const [type, settype] = useState<filterType>("USD");
+  const [type, settype] = useState<filterType>("NGN");
   const containerRef = useRef(null);
   const handlesetTabIndex = (index: number) => {
     settabIndex(index);
@@ -87,6 +87,9 @@ const Dashboard = () => {
                   </b>
                 </p>
                 <h3>0.0000000 BTC</h3>
+                <div className={classes.availableEscrow}>
+                    <p><small>Available Escrow wallet: 0.000000BTC</small></p>
+                    </div>
               </div>
             </div>
             <Space top={30} />

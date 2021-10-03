@@ -39,7 +39,7 @@ const dashboardStyles = makeStyles((theme: Theme) =>
       backgroundColor:theme.palette.primary.contrastText,
       borderRadius:50,
       height:'100%',
-      padding:'2.5px 10px 2.5px 10px',
+      padding:'2.5px 12px 2.5px 12px',
       boxShadow:'0px 3px 6px #00000029',
       display:'flex',
       textAlign:'center',
@@ -109,8 +109,17 @@ const dashboardStyles = makeStyles((theme: Theme) =>
     leftCardContent:{
       borderBottomLeftRadius:theme.spacing(1.5),
       borderBottomRightRadius:theme.spacing(1.5),
+    },
+    availableEscrow:{
+      background:'#FFFFFF 0% 0% no-repeat padding-box',
+      borderRadius:15,
+      paddingLeft:10,
+      paddingRight:10,
+      '& p':{
+        fontSize:13,
+        fontWeight:500
+      }
     }
-
     // Send
 ,
     sendRoot:{
