@@ -1,29 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import Wrapper from './Wrapper'
+import React, { useState, useEffect } from "react";
+import Wrapper from "./Wrapper";
 
 const AuthLayout = () => {
+  const [loading, setloading] = useState(true);
 
-    const [loading, setloading] = useState(true)
+  useEffect(() => {
+    setloading(false);
+  }, []);
 
-    useEffect(() => {
-        setloading(false)
-
-    }, [])
-
-
-
-
-
-    return (
+  return (
+    <>
+      {loading ? (
+        <div>loading</div>
+      ) : (
         <>
-            {loading ? <div>loading</div> :
-                <>
-
-                    <Wrapper />
-
-                </>}
-
+          <Wrapper />
         </>
-    )
-}
+      )}
+    </>
+  );
+};
 export default AuthLayout;

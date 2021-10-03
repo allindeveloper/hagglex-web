@@ -5,7 +5,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import Aux from "../../../components/hoc/_Aux";
 import CustomButton from "../../../components/ui/CustomButton/CustomButton";
 import CustomInput from "../../../components/ui/CustomInput/CustomInput";
@@ -25,7 +25,8 @@ import { useMutation } from "@apollo/client";
 import { REGISTER_USER } from "../../../graphql/services/auth";
 import NumberFormat, { NumberFormatValues } from "react-number-format";
 import { countries } from "../../../constants/appConstants";
-import countryCurreny from 'iso-country-currency'
+import countryCurreny from "iso-country-currency";
+import AuthContext from "../../../context/AuthContext";
 const SignUp: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
   const classes = LoginStyles();
@@ -46,8 +47,14 @@ const SignUp: React.FC<any> = () => {
     username: "",
     phonenumber: "",
   });
+  const { setUserCredentials, setAuthAndCache, updateCurrentUser } =
+    useContext(AuthContext);
   const [countryCode, setcountryCode] = useState("ng");
-  const [codeValue,setcodeValue] = useState<NumberFormatValues>({value:"234",floatValue:0,formattedValue:"+234"})
+  const [codeValue, setcodeValue] = useState<NumberFormatValues>({
+    value: "234",
+    floatValue: 0,
+    formattedValue: "+234",
+  });
   const resetForm = () => {
     setData({
       email: "",
@@ -79,22 +86,31 @@ const SignUp: React.FC<any> = () => {
       return;
     }
     const ctry = countries.filter(
-      (item) => item.code.toLocaleLowerCase() === countryCode.toLocaleLowerCase()
+      (item) =>
+        item.code.toLocaleLowerCase() === countryCode.toLocaleLowerCase()
     );
-    const currency = countryCurreny.getAllInfoByISO(countryCode).currency
+    const currency = countryCurreny.getAllInfoByISO(countryCode).currency;
     const payload: ISignUpRequestPayload = {
       email: data.email,
       username: data.username,
       password: data.password,
-      country:ctry?.[0].label ??'Nigeria',
+      country: ctry?.[0].label ?? "Nigeria",
       phonenumber: data.phonenumber,
-      currency:currency || 'NGN',
+      currency: currency || "NGN",
     };
+
     const registerRes = await register({
       variables: payload,
     });
     if (registerRes) {
-      console.log('registerr Res',registerRes)
+      if (!registerRes.data?.register?.user.emailVerified) {
+        setAuthAndCache(`${`Bearer`} ${registerRes.data?.register?.token}`);
+        updateCurrentUser(registerRes.data?.register?.user);
+        setUserCredentials(registerRes.data?.register?.user);
+        history.push("/verify-account");
+      } else {
+        resetForm();
+      }
     }
     setdisabled(false);
   };
@@ -133,7 +149,7 @@ const SignUp: React.FC<any> = () => {
     const filteredFlag = countries.filter(
       (item) => item.phone === values.value
     );
-    setcodeValue(values)
+    setcodeValue(values);
     if (filteredFlag?.[0]) {
       setcountryCode(filteredFlag?.[0].code.toLocaleLowerCase());
     } else {
@@ -222,7 +238,7 @@ const SignUp: React.FC<any> = () => {
                         onValueChange={onValueChange}
                         className={classes.countryCodeInputTextField}
                         InputProps={{
-                          className:classes.countryCodeInput,
+                          className: classes.countryCodeInput,
                           startAdornment: (
                             <div>
                               <img

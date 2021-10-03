@@ -111,6 +111,7 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     paddingLeft:theme.spacing(10),
     paddingRight:theme.spacing(10),
     borderRadius:theme.spacing(1.5),
+    paddingBottom:theme.spacing(5),
     [theme.breakpoints.down("md")]: {
       maxWidth: 320,
       minWidth: '160%',
