@@ -78,6 +78,42 @@ const dashboardStyles = makeStyles((theme: Theme) =>
       borderRadius:theme.spacing(1.5),
       backgroundColor:theme.palette.primary.contrastText,
     },
+    listsStatsFilter:{
+      background:'#F9F9F9 0% 0% no-repeat padding-box',
+      // width:200,
+      height:40,
+      display:'flex',
+      justifyContent:'space-between'
+    },
+    listFilterPicked:{
+      // width:0,
+    
+      marginLeft:4,
+      marginRight:10,
+      margin:'auto',
+      background:'#F9F9F9 0% 0% no-repeat padding-box',
+      boxShadow:'0px 3px 6px #00000029',
+      fontWeight:'bold',
+      borderRadius:5,
+      '& label':{
+        cursor:'pointer',
+        paddingTop:8,
+        paddingBottom:8,
+        paddingLeft:25,
+        paddingRight:25,
+      }
+    },
+    listFilterNotPicked:{
+      margin:'auto',
+      '& label':{
+        cursor:'pointer',
+        color:theme.palette.grey[500],
+        paddingTop:8,
+        paddingBottom:8,
+        paddingLeft:20,
+        paddingRight:20,
+      }
+    },
     rightCard:{
       borderRadius:theme.spacing(1.5),
       backgroundColor:theme.palette.primary.contrastText,

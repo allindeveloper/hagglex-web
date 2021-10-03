@@ -1,5 +1,5 @@
 import { Grid, Typography, useTheme } from "@mui/material";
-import React, { useState,useRef} from "react";
+import React, { useState, useRef } from "react";
 import dashboardStyles from "../../styles/dashboardStyles";
 import LeftSection from "./LeftSection";
 import awesomebitcoin from "../../assets/svg/awesome-bitcoin.svg";
@@ -9,20 +9,27 @@ import { Space } from "../../components/ui/Space/Space";
 import Send from "./Send";
 import clsx from "clsx";
 
-type filterType = "USD" | "NGN"
+type currencyType = "USD" | "NGN";
+type walletType = "LIST" | "STATS";
 const Dashboard = () => {
   const classes = dashboardStyles();
   const appTheme = useTheme();
   const [tabIndex, settabIndex] = useState(0);
   const history = useHistory();
-  const [type, settype] = useState<filterType>("NGN");
+  const [currency, setcurrency] = useState<currencyType>("NGN");
+  const [walletcat, setwalletcat] = useState<walletType>("LIST");
+
   const containerRef = useRef(null);
   const handlesetTabIndex = (index: number) => {
     settabIndex(index);
   };
 
-  const handleSetType = (type:filterType)=>{
-      settype(type)
+  const handleSetType = (currency: currencyType) => {
+    setcurrency(currency);
+  };
+
+  const handleSetWalletCat = (walletcat:walletType) =>{
+    setwalletcat(walletcat)
   }
   return (
     <div className={classes.dashboardRoot}>
@@ -35,11 +42,11 @@ const Dashboard = () => {
               <h1>N0.00</h1> <label className="ms-2">NGN</label>
             </p>
           </div>
-          <div  className={classes.topCardContentsRight}>
+          <div className={classes.topCardContentsRight}>
             <div
-            onClick={()=>handleSetType('USD')}
+              onClick={() => handleSetType("USD")}
               className={clsx(
-                type === "USD"
+                currency === "USD"
                   ? classes.topCardContentsRightButtonSelected
                   : classes.topCardContentsRightButtonNotSelected
               )}
@@ -47,9 +54,9 @@ const Dashboard = () => {
               <label>USD</label>
             </div>
             <div
-            onClick={()=>handleSetType('NGN')}
+              onClick={() => handleSetType("NGN")}
               className={clsx(
-                type === "NGN"
+                currency === "NGN"
                   ? classes.topCardContentsRightButtonSelected
                   : classes.topCardContentsRightButtonNotSelected
               )}
@@ -63,13 +70,28 @@ const Dashboard = () => {
       <Grid container spacing={2} className="mt-3">
         <Grid item md={6} xs={12}>
           <div className={classes.leftCard}>
-            <div className="d-flex">
+            <div className="d-flex justify-content-between">
               <div className="ms-4 mt-4 mb-2">
                 <Typography className="mt-1">
                   <b>Wallet</b>
                 </Typography>
               </div>
-              <div></div>
+              <div className={classes.listsStatsFilter.concat(" me-4 mt-4")}>
+                <div
+                onClick={() => handleSetWalletCat("LIST")}
+                className={clsx(walletcat === "LIST"?classes.listFilterPicked:classes.listFilterNotPicked)}>
+                  <label>
+                    <small>List</small>
+                  </label>
+                </div>
+                <div 
+                onClick={() => handleSetWalletCat("STATS")}
+                className={clsx(walletcat === "STATS"?classes.listFilterPicked:classes.listFilterNotPicked)}>
+                  <label>
+                    <small>Stats</small>
+                  </label>
+                </div>
+              </div>
             </div>
             <LeftSection />
           </div>
@@ -88,8 +110,10 @@ const Dashboard = () => {
                 </p>
                 <h3>0.0000000 BTC</h3>
                 <div className={classes.availableEscrow}>
-                    <p><small>Available Escrow wallet: 0.000000BTC</small></p>
-                    </div>
+                  <p>
+                    <small>Available Escrow wallet: 0.000000BTC</small>
+                  </p>
+                </div>
               </div>
             </div>
             <Space top={30} />
