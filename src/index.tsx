@@ -8,7 +8,7 @@ import client from "./graphql/client";
 import { BrowserRouter } from "react-router-dom";
 import MainLayout from "./components/hoc/MainLayout";
 import { StylesProvider, createGenerateClassName } from "@mui/styles";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/styles";
 import Themes from "./theme";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
