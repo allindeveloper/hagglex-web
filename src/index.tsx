@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import GlobalStyles from "./styles/GlobalStyles";
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import { AuthProviderContainer } from './context/AuthContext';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: "--hagglex-web--",
@@ -28,11 +29,12 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <StylesProvider generateClassName={generateClassName}>
         <ThemeProvider theme={Themes.default}>
-          {" "}
+          <AuthProviderContainer>
           <BrowserRouter>
             <GlobalStylesC />
             <MainLayout />
           </BrowserRouter>
+          </AuthProviderContainer>
         </ThemeProvider>{" "}
       </StylesProvider>
     </ApolloProvider>

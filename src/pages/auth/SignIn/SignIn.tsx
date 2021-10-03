@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import Aux from "../../../components/hoc/_Aux";
 import CustomButton from "../../../components/ui/CustomButton/CustomButton";
 import CustomInput from "../../../components/ui/CustomInput/CustomInput";
@@ -20,11 +20,15 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { LOGIN_USER } from "../../../graphql/services/auth";
 import mutation from "../../../graphql/mutation";
 import { useMutation } from "@apollo/client";
+import AuthContext from "../../../context/AuthContext";
 const SignIn: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
   const classes = LoginStyles();
   const history = useHistory();
   const [togglePassword, settogglePassword] = useState(false);
+  const { setUserCredentials, setAuthAndCache, updateCurrentUser } =
+    useContext(AuthContext);
+
   const [err, setError] = useState(signInErrors);
   const hasError = useRef<any>(null);
 
@@ -34,15 +38,15 @@ const SignIn: React.FC<any> = () => {
     input: "",
     password: "",
   });
-  const [login, {loading}] = useMutation(LOGIN_USER);
+  const [login, { loading }] = useMutation(LOGIN_USER);
   const resetForm = () => {
     setData({
       password: "",
       input: "",
     });
-    history.push("/login");
+    history.push("/app/dashboard");
   };
-  const handleSignIn =  async() => {
+  const handleSignIn = async () => {
     setdisabled(true);
     validatorAll(
       [
@@ -66,16 +70,22 @@ const SignIn: React.FC<any> = () => {
       input: data.input,
       password: data.password,
     };
-    await login({
+    const loginRes = await login({
       variables: {
         input: data.input,
         password: data.password,
       },
     });
-    setdisabled(false)
+    if (loginRes) {
+      setdisabled(false);
+      setAuthAndCache(`${`Bearer`} ${loginRes.data?.login?.token}`);
+      updateCurrentUser(loginRes.data?.login?.user);
+      setUserCredentials(loginRes.data?.login?.user);
+      resetForm();
+    }
+    setdisabled(false);
   };
 
-  
   const handleTogglePassword = () => {
     settogglePassword(!togglePassword);
   };

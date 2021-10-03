@@ -20,6 +20,16 @@ export const LOGIN_USER = gql`
       user {
         _id
         email
+        phonenumber
+        phoneNumberDetails {
+          phoneNumber
+          callingCode
+          flag
+        }
+        referralCode
+        username
+        emailVerified
+        active
         createdAt
       }
       token

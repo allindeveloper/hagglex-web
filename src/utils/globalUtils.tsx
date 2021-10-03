@@ -1,14 +1,6 @@
 import SimpleCrypto from "simple-crypto-js";
 
 
-// from http://widgets.twimg.com/j/1/widget.js
-var K = function () {
-  var a = navigator.userAgent;
-  return {
-    ie: a.match(/MSIE\s([^;]*)/)
-  }
-}();
-
 export const enterHandler = (id?: string) => {
   window.addEventListener("keyup", (event) => {
     // 13 is the "Enter" key on the keyboard
