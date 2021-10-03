@@ -23,6 +23,11 @@ const VerifyAccount: React.FC<any> = () => {
   const handleChange = (vals: string) => {
     setVal(vals);
   };
+  useEffect(()=>{
+    if(!location.state?.email){
+      history.push('/')
+    }
+  })
 
   useEffect(() => {
     if (val !== "" && val.length === 6) {

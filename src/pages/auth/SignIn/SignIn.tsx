@@ -20,6 +20,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { LOGIN_USER } from "../../../graphql/services/auth";
 import { ApolloError, useMutation } from "@apollo/client";
 import AuthContext from "../../../context/AuthContext";
+import AppSettingsContext from "../../../context/AppSettingsContext";
 const SignIn: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
   const classes = LoginStyles();
@@ -30,6 +31,7 @@ const SignIn: React.FC<any> = () => {
   const [uiError, setuiError] = useState<any>();
   const [err, setError] = useState(signInErrors);
   const hasError = useRef<any>(null);
+  const { updateshowdefaultAlert } = useContext(AppSettingsContext);
 
   const [disabled, setdisabled] = useState(false);
 
@@ -37,7 +39,11 @@ const SignIn: React.FC<any> = () => {
     input: "",
     password: "",
   });
-  const [login, { loading, error }] = useMutation(LOGIN_USER);
+  const [login, { loading }] = useMutation(LOGIN_USER, {
+    onError: (error) => {
+      updateshowdefaultAlert(true, error.message, "error");
+    },
+  });
   const resetForm = () => {
     setData({
       password: "",
@@ -111,7 +117,7 @@ const SignIn: React.FC<any> = () => {
 
   useEffect(() => {
     enterHandler("signinbutton");
-  });
+  },[]);
   return (
     <div>
       <Grid container spacing={0} className={classes.container}>
@@ -171,7 +177,6 @@ const SignIn: React.FC<any> = () => {
                   />
 
                   <Space top={10} />
-                  <label>Error--{error?.message}</label>
                   <Space bottom={30} />
                 </Aux>
               }

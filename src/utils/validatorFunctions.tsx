@@ -60,10 +60,7 @@ export const getErrorMsg = (error:any, name:string,label:string, controller:any 
     }
 
 
-    // if (error.substr(0, 50) === 'max') {
-    //     const len = error.substr(51);
-    //     return `The maximum length for the ${controller} ${label} is ${len}`;
-    // }
+   
     let num2 = parseInt(error.split(":")[1])
     if (error.includes('max')) {
         const len = num2;
@@ -71,10 +68,7 @@ export const getErrorMsg = (error:any, name:string,label:string, controller:any 
         return `The maximum length for ${label} is ${len} `;
     }
 
-    // if (error.substr(0, 51) === 'min') {
-    //     const len = error.substr(51);
-    //     return `The minimum length for the ${controller} ${name} is ${len}`;
-    // }
+    
 
     if (error === 'string') {
         return `Enter a correct ${label} `;
@@ -106,7 +100,7 @@ export const validationRules:any = {
     email: ['required','email'],
     input:['required','email'],
     password: ['required','min:8','password-validate'],
-    username: ['required','specialcha','string','min:3','max:15'],
+    username: ['required','string','string','min:3','max:15'],
     phonenumber:['required','number'],
    
 }
@@ -137,9 +131,7 @@ export const validate = (rule:any, value:any, fields:any = null) => {
         if(value.length <num){
             return rule
         }
-        // else if(value.length <5){
-        //     return rule
-        // }
+        
 
         return error
     }
@@ -149,25 +141,11 @@ export const validate = (rule:any, value:any, fields:any = null) => {
         if(value.length > num2){
             return rule
         }
-        // else if(value.length <5){
-        //     return rule
-        // }
+     
 
         return error
     }
-    // if(rule.includes("min")){
-    //     if(value.length <5){
-    //         return rule
-    //     }
-    //     return error
-    // }
-    // if(rule.includes("max")){
-    //     if(value.length > 150){
-    //         return rule
-    //     }
-    //     return error
-    // }
-
+   
     if (rule.substr(0, 50) === 'max') {
         const len = rule.substr(51);
         return value.length > len ? rule : error;
@@ -347,13 +325,7 @@ export const validator = (field:any, controller:any, obj:any, err:any) => {
         if (error !== null) {
             let errorMsg = getErrorMsg('required', name,label, controller);
             res[name] = errorMsg;
-            // obj.setState({
-            //     err: {...obj.state.err,
-            //         ...res,
-            //         all: obj.state.err.all.add(name)
-            //     }
-            // });
-
+           
              obj((prevState:any) => ({
                 ...prevState,
                 ...res,
@@ -379,8 +351,6 @@ export const validator = (field:any, controller:any, obj:any, err:any) => {
         res[name] = errors[0];
     } else {
         res[name] = '';
-        // obj.state.err.all.delete(name);
-        // obj.setState({ err: {...obj.state.err, ...res } });
         err.all.delete(name);
         obj((prevState:any) => ({
             ...prevState, ...res
@@ -388,13 +358,7 @@ export const validator = (field:any, controller:any, obj:any, err:any) => {
         return;
     }
 
-    // obj.setState({
-    //     err: {...obj.state.err,
-    //         ...res,
-    //         all: obj.state.err.all.add(name)
-    //     }
-    // });
-
+  
     obj((prevState:any) => ({
         ...prevState,
         ...res,

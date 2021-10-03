@@ -16,10 +16,7 @@ export const enterHandler = (id?: string) => {
 };
 export const maskEmail = (email:string)=>{
   if (email) {
-    // if (email.length > 20) {
-    //   return email.substring(0, 20) + "...";
-    // }
-    let firstPart = email.substring(0,10)
+    let firstPart = email.substring(0,5)
     let secondPart = email.split("@")
     let newEmail = `${firstPart}*******${secondPart?.[1]}`
     return newEmail;

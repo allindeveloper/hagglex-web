@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useContext } from 'react'
 import Aux from './_Aux'
 import {
     Redirect,
@@ -11,12 +11,16 @@ import SignUp from '../../pages/auth/SignUp/SignUp';
 import AuthLayout from './AuthLayout';
 import ScrollToTop from '../ui/ScrollToTop';
 import VerifyAccount from '../../pages/auth/VerifyAccount/VerifyAccount';
+import AppSettingsContext from '../../context/AppSettingsContext';
+import { Alert, Snackbar } from '@mui/material';
 
 
 interface MainLayoutProps {
 
 }
 const MainLayout: FC<MainLayoutProps> = () => {
+
+    const { showdefaultAlert, defaultAlertMessage, alertType, updateshowdefaultAlert } = useContext(AppSettingsContext);
 
     return (
         <Aux>
@@ -73,7 +77,17 @@ const MainLayout: FC<MainLayoutProps> = () => {
                 </Switch>
             </Suspense>
             </ScrollToTop>
-            
+            <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                open={showdefaultAlert}
+                key={'top' + 'center'}
+                autoHideDuration={3000}
+                onClose={() => updateshowdefaultAlert(false)}
+            >
+                <Alert elevation={5} variant="filled" onClose={() => updateshowdefaultAlert(false)} severity={alertType}>
+                    {defaultAlertMessage?.toLocaleUpperCase()}
+                </Alert>
+            </Snackbar>
         </Aux>
     )
 }
