@@ -18,7 +18,6 @@ import { enterHandler } from "../../../utils/globalUtils";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { LOGIN_USER } from "../../../graphql/services/auth";
-import mutation from "../../../graphql/mutation";
 import { useMutation } from "@apollo/client";
 import AuthContext from "../../../context/AuthContext";
 const SignIn: React.FC<any> = () => {
@@ -71,10 +70,7 @@ const SignIn: React.FC<any> = () => {
       password: data.password,
     };
     const loginRes = await login({
-      variables: {
-        input: data.input,
-        password: data.password,
-      },
+      variables: payload,
     });
     if (loginRes) {
       setdisabled(false);

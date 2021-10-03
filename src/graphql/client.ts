@@ -5,6 +5,8 @@ import {
   } from "@apollo/client";
   import { createHttpLink } from "apollo-link-http";
   import { setContext } from '@apollo/client/link/context';
+import { useContext } from "react";
+import AuthContext, { getDefaultAuth } from "../context/AuthContext";
 
   const GRAPHQL_API = process.env.REACT_APP_GRAPHQL_API;
   
@@ -14,12 +16,12 @@ import {
   
   const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
-    const token = localStorage.getItem('token');
+    const auth = getDefaultAuth()
     // return the headers to the context so httpLink can read them
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : "ojojioj",
+        authorization: auth
       }
     }
   });
