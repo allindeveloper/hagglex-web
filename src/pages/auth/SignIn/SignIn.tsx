@@ -18,7 +18,7 @@ import { enterHandler } from "../../../utils/globalUtils";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { LOGIN_USER } from "../../../graphql/services/auth";
-import { useMutation } from "@apollo/client";
+import { ApolloError, useMutation } from "@apollo/client";
 import AuthContext from "../../../context/AuthContext";
 const SignIn: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
@@ -27,7 +27,7 @@ const SignIn: React.FC<any> = () => {
   const [togglePassword, settogglePassword] = useState(false);
   const { setUserCredentials, setAuthAndCache, updateCurrentUser } =
     useContext(AuthContext);
-
+  const [uiError, setuiError] = useState<any>();
   const [err, setError] = useState(signInErrors);
   const hasError = useRef<any>(null);
 
@@ -37,7 +37,7 @@ const SignIn: React.FC<any> = () => {
     input: "",
     password: "",
   });
-  const [login, { loading }] = useMutation(LOGIN_USER);
+  const [login, { loading, error }] = useMutation(LOGIN_USER);
   const resetForm = () => {
     setData({
       password: "",
@@ -69,15 +69,20 @@ const SignIn: React.FC<any> = () => {
       input: data.input,
       password: data.password,
     };
-    const loginRes = await login({
-      variables: payload,
-    });
-    if (loginRes) {
-      setdisabled(false);
-      setAuthAndCache(`${`Bearer`} ${loginRes.data?.login?.token}`);
-      updateCurrentUser(loginRes.data?.login?.user);
-      setUserCredentials(loginRes.data?.login?.user);
-      resetForm();
+    try {
+      const loginRes = await login({
+        variables: payload,
+      });
+
+      if (!loginRes.errors) {
+        setdisabled(false);
+        setAuthAndCache(`${`Bearer`} ${loginRes.data?.login?.token}`);
+        updateCurrentUser(loginRes.data?.login?.user);
+        setUserCredentials(loginRes.data?.login?.user);
+        resetForm();
+      }
+    } catch (e) {
+      setuiError(e);
     }
     setdisabled(false);
   };
@@ -105,7 +110,7 @@ const SignIn: React.FC<any> = () => {
   };
 
   useEffect(() => {
-    enterHandler("finalsignup");
+    enterHandler("signinbutton");
   });
   return (
     <div>
@@ -166,7 +171,7 @@ const SignIn: React.FC<any> = () => {
                   />
 
                   <Space top={10} />
-
+                  <label>Error--{error?.message}</label>
                   <Space bottom={30} />
                 </Aux>
               }
@@ -180,6 +185,7 @@ const SignIn: React.FC<any> = () => {
             <Space top={25} />
             <CustomButton
               text="Sign In"
+              id="signinbutton"
               disabled={disabled}
               loading={loading}
               onClick={handleSignIn}

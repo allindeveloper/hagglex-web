@@ -57,27 +57,28 @@ const TopAppBar: React.FC<TopAppBarProps> = ({ handleDrawerToggle }) => {
                   <Avatar className="cursor-pointer">UP</Avatar>
                   <Hidden xsDown>
                     <Typography variant="caption">
-                      <strong>Uchendu Precious</strong>
+                      <label>Uchendu Precious</label>
                     </Typography>
                   </Hidden>
-                  <CustomIcon className="fi-rr-caret-down" />
+                  <CustomIcon className="fas fa-caret-down" />
+                  
                 </div>
               }
               hasMultiple={true}
             >
-              <Link to={"/app/settings/profile"}>
+              
                 <MenuItem className={classes.menuItem}>
-                  <CustomIcon className="fi-rr-user" />
-                  <span> Profile </span>
+                  <CustomIcon className="fas fa-cog" />
+                  <span> Settings </span>
                 </MenuItem>
-              </Link>
+            
 
               <MenuItem
                 className={classes.menuItem}
                 component={"div"}
                 onClick={handleLogout}
               >
-                <CustomIcon className="fi-rr-sign-out" />
+                <CustomIcon className="fas fa-sign-out-alt" />
                 <span> Log out </span>
               </MenuItem>
             </CustomMenuWrapper>
