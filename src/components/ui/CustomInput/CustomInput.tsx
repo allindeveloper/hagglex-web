@@ -28,7 +28,7 @@ export interface CustomInputProps {
   multiline?: boolean;
   loading?: boolean;
   noStyles?: boolean;
-  variant: TextFieldProps["variant"];
+  variant?: TextFieldProps["variant"];
   fontWeight?: React.CSSProperties["fontWeight"];
   fontSize?: React.CSSProperties["fontSize"];
   inputContainerclassName?:string

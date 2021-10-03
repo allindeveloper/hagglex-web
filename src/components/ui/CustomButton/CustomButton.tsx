@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Button, ButtonProps } from '@mui/material';
 import customButtonStyle from './customButtonStyle';
 import CustomCircleLoader from '../Loader/CustomCircleLoader';
+import { white } from '../../../theme/default';
 export interface CustomButtonProps extends ButtonProps {
     loading?: boolean,
     text?: string | undefined,
@@ -30,7 +31,7 @@ const CustomButton = ({ show = true, fontSize, loading, text,className, width, h
                 }}
                 disableElevation {...rest}>
 
-                {text}{loading && <div style={{ marginTop: '6px' }} className="ms-2"><CustomCircleLoader /></div>}
+                {text}{loading && <div style={{ marginTop: '6px' }} className="ms-2"><CustomCircleLoader color={white} /></div>}
             </Button>}
         </>
     );

@@ -15,25 +15,26 @@ import { validator, validatorAll } from "../../../utils/validatorFunctions";
 import { linkColor } from "../../../theme/default";
 import { useEffect } from "react";
 import { enterHandler } from "../../../utils/globalUtils";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { LOGIN_USER } from "../../../graphql/services/auth";
+import mutation from "../../../graphql/mutation";
+import { useMutation } from "@apollo/client";
 const SignIn: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
   const classes = LoginStyles();
   const history = useHistory();
   const [togglePassword, settogglePassword] = useState(false);
-
   const [err, setError] = useState(signInErrors);
   const hasError = useRef<any>(null);
 
-  const [loading, setLoading] = useState(false);
   const [disabled, setdisabled] = useState(false);
 
   const [data, setData] = useState<ILoginRequestPayload>({
-    input:"",
-    password:""
+    input: "",
+    password: "",
   });
-
+  const [login, {loading}] = useMutation(LOGIN_USER);
   const resetForm = () => {
     setData({
       password: "",
@@ -41,12 +42,11 @@ const SignIn: React.FC<any> = () => {
     });
     history.push("/login");
   };
-  const handleSignIn = () => {
+  const handleSignIn =  async() => {
     setdisabled(true);
-    setLoading(true);
     validatorAll(
       [
-        { name: "email", value: data.input, label: "Email" },
+        { name: "input", value: data.input, label: "Email" },
         { name: "password", value: data.password, label: "Password" },
       ],
       "SignIn",
@@ -55,24 +55,27 @@ const SignIn: React.FC<any> = () => {
       hasError
     );
     if (!hasError.current) {
-      setLoading(false);
       setdisabled(false);
       return;
     }
     if (Object.keys(hasError?.current).length > 0) {
       setdisabled(false);
-      setLoading(false);
       return;
     }
     const payload: ILoginRequestPayload = {
       input: data.input,
       password: data.password,
     };
+    await login({
+      variables: {
+        input: data.input,
+        password: data.password,
+      },
+    });
+    setdisabled(false)
   };
 
-  const handleNavigate = () => {
-    history.push("/login");
-  };
+  
   const handleTogglePassword = () => {
     settogglePassword(!togglePassword);
   };
@@ -147,7 +150,11 @@ const SignIn: React.FC<any> = () => {
                         style={{ color: linkColor }}
                         onClick={handleTogglePassword}
                       >
-                        {togglePassword ? <VisibilityOffIcon/> : <RemoveRedEyeIcon/>}
+                        {togglePassword ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <RemoveRedEyeIcon />
+                        )}
                       </div>
                     }
                   />
@@ -165,21 +172,22 @@ const SignIn: React.FC<any> = () => {
             </div>
 
             <Space top={25} />
-            <CustomButton 
-            text="Sign In" 
-            disabled={disabled}
-            loading={loading}
-            onClick={handleSignIn}
-            show />
+            <CustomButton
+              text="Sign In"
+              disabled={disabled}
+              loading={loading}
+              onClick={handleSignIn}
+              show
+            />
             <Space top={25} />
             <div className="d-flex justify-content-center mb-5">
               <div>
                 <small>New user ? </small>
               </div>
               <div>
-              <Link to="/sign-up" className="text-decoration-none ms-2">
-                    Sign up to get started
-                  </Link>
+                <Link to="/sign-up" className="text-decoration-none ms-2">
+                  Sign up to get started
+                </Link>
               </div>
             </div>
 
@@ -191,8 +199,12 @@ const SignIn: React.FC<any> = () => {
               <div>
                 <small>
                   <div className="d-flex justify-content-between">
-                    <div className="me-2"><Typography variant="caption">Privacy</Typography></div>
-                    <div className="ms-4"><Typography variant="caption"> Terms & Policy</Typography></div>
+                    <div className="me-2">
+                      <Typography variant="caption">Privacy</Typography>
+                    </div>
+                    <div className="ms-4">
+                      <Typography variant="caption"> Terms & Policy</Typography>
+                    </div>
                   </div>
                 </small>
               </div>
