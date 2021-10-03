@@ -13,6 +13,7 @@ import Themes from "./theme";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import GlobalStyles from "./styles/GlobalStyles";
+import '@fortawesome/fontawesome-svg-core/styles.css'
 
 const generateClassName = createGenerateClassName({
   productionPrefix: "--hagglex-web--",
