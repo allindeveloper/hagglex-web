@@ -10,8 +10,8 @@ const OnboardingRightContainer: React.FC<OnboardingRightContainer> = () => {
     <div className={classes.logotypeContainer}>
       <AuthCarousel>
         <div className="">
-          <img src={tradeglobally} width={"10%"} />
-          <h2>Trade Globally</h2>
+          <img src={tradeglobally} />
+          <h3>Trade Globally</h3>
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -20,8 +20,8 @@ const OnboardingRightContainer: React.FC<OnboardingRightContainer> = () => {
           </p>
         </div>
         <div className="">
-          <img src={tradeglobally} width={"10%"} />
-          <h2>Trade Securely</h2>
+          <img src={tradeglobally} />
+          <h3>Trade Securely</h3>
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -30,8 +30,8 @@ const OnboardingRightContainer: React.FC<OnboardingRightContainer> = () => {
           </p>
         </div>
         <div className="">
-          <img src={tradeglobally} width={"10%"} />
-          <h2>Trade Smartly</h2>
+          <img src={tradeglobally} />
+          <h3>Trade Smartly</h3>
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam

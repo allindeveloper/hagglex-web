@@ -58,7 +58,7 @@ const VerifyAccount: React.FC<any> = () => {
               <p>
                 <small>
                   Please type in the code that has been sent to
-                  sam.ubon@gmail.com
+                  {'sam.ubon@yopmail.com'.substring(4, 'sam.ubon@yopmail.com'.length - 5).replace(/\d/g,"*")}
                 </small>
               </p>
               <Space top={60} />

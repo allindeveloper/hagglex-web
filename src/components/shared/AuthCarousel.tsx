@@ -1,13 +1,15 @@
 import { ReactChild, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import authCarouselStyles from "../../styles/authCarouselStyles";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useTheme } from "@mui/material";
 interface IAuthCarousel {
   children?: ReactChild[];
 }
 const AuthCarousel = ({ children }: IAuthCarousel) => {
   const [currentSlide, setcurrentSlide] = useState(0);
+  const appTheme = useTheme();
   const next = () => {
     setcurrentSlide(currentSlide + 1);
   };
@@ -32,9 +34,25 @@ const AuthCarousel = ({ children }: IAuthCarousel) => {
       <>
         {isSelected && (
           <div className={classes.indicatorsRoot}>
-            <div className="me-5 cursor-pointer" onClick={prev}><ArrowBackIosIcon htmlColor={currentSlide === 0 ?  'blue':'white'} /></div>
+            <div className="me-5 cursor-pointer" onClick={prev}>
+              <ArrowBackIosIcon
+                htmlColor={
+                  currentSlide === 0
+                    ? appTheme.palette.secondary.main
+                    : appTheme.palette.primary.contrastText
+                }
+              />
+            </div>
             <div>igoioij</div>
-            <div className="ms-5 cursor-pointer" onClick={next}><ArrowForwardIosIcon htmlColor={currentSlide === 2? 'blue':'white'}/></div>
+            <div className="ms-5 cursor-pointer" onClick={next}>
+              <ArrowForwardIosIcon
+                htmlColor={
+                  currentSlide === 2
+                    ? appTheme.palette.secondary.main
+                    : appTheme.palette.primary.contrastText
+                }
+              />
+            </div>
           </div>
         )}
       </>
@@ -42,7 +60,7 @@ const AuthCarousel = ({ children }: IAuthCarousel) => {
   };
   return (
     <div>
-     <Carousel
+      <Carousel
         autoPlay={false}
         showArrows={false}
         showIndicators={true}
@@ -51,6 +69,7 @@ const AuthCarousel = ({ children }: IAuthCarousel) => {
         renderIndicator={renderIndicators}
         selectedItem={currentSlide}
         useKeyboardArrows
+        className={classes.carouselRoot}
         onChange={updateCurrentSlide}
       >
         {children}
