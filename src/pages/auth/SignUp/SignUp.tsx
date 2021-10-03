@@ -1,4 +1,10 @@
-import { Grid, Typography } from "@mui/material";
+import {
+  Grid,
+  TextField,
+  Theme,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import Aux from "../../../components/hoc/_Aux";
 import CustomButton from "../../../components/ui/CustomButton/CustomButton";
@@ -17,13 +23,17 @@ import { useEffect } from "react";
 import { enterHandler } from "../../../utils/globalUtils";
 import { useMutation } from "@apollo/client";
 import { REGISTER_USER } from "../../../graphql/services/auth";
-
+import NumberFormat, { NumberFormatValues } from "react-number-format";
+import { countries } from "../../../constants/appConstants";
+import countryCurreny from 'iso-country-currency'
 const SignUp: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
   const classes = LoginStyles();
   const history = useHistory();
   const [togglePassword, settogglePassword] = useState(false);
-
+  const matchesMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("md")
+  );
   const [err, setError] = useState(signUpErrors);
   const hasError = useRef<any>(null);
 
@@ -36,7 +46,8 @@ const SignUp: React.FC<any> = () => {
     username: "",
     phonenumber: "",
   });
-
+  const [countryCode, setcountryCode] = useState("ng");
+  const [codeValue,setcodeValue] = useState<NumberFormatValues>({value:"234",floatValue:0,formattedValue:"+234"})
   const resetForm = () => {
     setData({
       email: "",
@@ -46,12 +57,13 @@ const SignUp: React.FC<any> = () => {
     });
     history.push("/login");
   };
-  const handleCreateAccount =  async () => {
+  const handleCreateAccount = async () => {
     validatorAll(
       [
         { name: "email", value: data.email, label: "Email" },
         { name: "password", value: data.password, label: "Password" },
         { name: "username", value: data.username, label: "Username" },
+        { name: "phonenumber", value: data.phonenumber, label: "Phone number" },
       ],
       "SignUp",
       setError,
@@ -66,18 +78,23 @@ const SignUp: React.FC<any> = () => {
       setdisabled(false);
       return;
     }
+    const ctry = countries.filter(
+      (item) => item.code.toLocaleLowerCase() === countryCode.toLocaleLowerCase()
+    );
+    const currency = countryCurreny.getAllInfoByISO(countryCode).currency
     const payload: ISignUpRequestPayload = {
       email: data.email,
       username: data.username,
       password: data.password,
+      country:ctry?.[0].label ??'Nigeria',
       phonenumber: data.phonenumber,
-      
+      currency:currency || 'NGN',
     };
     const registerRes = await register({
       variables: payload,
     });
     if (registerRes) {
-      
+      console.log('registerr Res',registerRes)
     }
     setdisabled(false);
   };
@@ -112,6 +129,17 @@ const SignUp: React.FC<any> = () => {
   useEffect(() => {
     enterHandler("finalsignup");
   });
+  const onValueChange = (values: NumberFormatValues) => {
+    const filteredFlag = countries.filter(
+      (item) => item.phone === values.value
+    );
+    setcodeValue(values)
+    if (filteredFlag?.[0]) {
+      setcountryCode(filteredFlag?.[0].code.toLocaleLowerCase());
+    } else {
+      setcountryCode("ng");
+    }
+  };
 
   return (
     <div>
@@ -184,23 +212,60 @@ const SignUp: React.FC<any> = () => {
                     type={"text"}
                   />
                   <Space top={10} />
-                  <CustomInput
-                    errorText={err.phonenumber}
-                    showError={err.phonenumber.length > 0}
-                    value={data.phonenumber}
-                    name="phonenumber"
-                    handleChange={(e) =>
-                      handleCreateFormInputChange(
-                        "phonenumber",
-                        "Phone number",
-                        e
-                      )
-                    }
-                    type="text"
-                    labelText="Enter your phone number"
-                    id="signup-phonenumber"
-                    placeholder="Enter your mobile number"
-                  />
+                  <label>Enter your phone number</label>
+
+                  <div className="d-flex justify-content-start">
+                    <div className="mt-4">
+                      <NumberFormat
+                        value={codeValue?.value}
+                        customInput={TextField}
+                        onValueChange={onValueChange}
+                        className={classes.countryCodeInputTextField}
+                        InputProps={{
+                          className:classes.countryCodeInput,
+                          startAdornment: (
+                            <div>
+                              <img
+                                loading="lazy"
+                                width="40"
+                                height="25"
+                                src={`https://flagcdn.com/w20/${countryCode}.png`}
+                                srcSet={`https://flagcdn.com/w40/${countryCode}.png 2x`}
+                                alt=""
+                              />
+                            </div>
+                          ),
+                        }}
+                        inputProps={{
+                          className: "pt-2 pb-2 ps-1 pe-0",
+                          style: {
+                            width: 70,
+                          },
+                        }}
+                        format="(+#####)"
+                      />
+                    </div>
+                    <div>
+                      <CustomInput
+                        errorText={err.phonenumber}
+                        showError={err.phonenumber.length > 0}
+                        value={data.phonenumber}
+                        name="phonenumber"
+                        className="ms-3"
+                        inputWidth={matchesMobile ? 170 : 200}
+                        handleChange={(e) =>
+                          handleCreateFormInputChange(
+                            "phonenumber",
+                            "Phone number",
+                            e
+                          )
+                        }
+                        type="text"
+                        id="signup-phonenumber"
+                        placeholder="Enter your mobile number"
+                      />
+                    </div>
+                  </div>
 
                   <Space top={20} />
 
@@ -208,15 +273,18 @@ const SignUp: React.FC<any> = () => {
                 </Aux>
               }
             </Aux>
-            {!showReferral&&<div onClick={handleShowReferralInput}>
-              <Typography className={classes.gotReferralCode}>
-                <b>Got referral code ?</b>
-              </Typography>
-            </div>}
+            {!showReferral && (
+              <div onClick={handleShowReferralInput}>
+                <Typography className={classes.gotReferralCode}>
+                  <b>Got referral code ?</b>
+                </Typography>
+              </div>
+            )}
             {showReferral && (
               <CustomInput
                 value={data.referralCode}
                 name="referralCode"
+                inputContainerclassName="mt-0 pt-0"
                 handleChange={(e) =>
                   handleCreateFormInputChange(
                     "referralCode",
@@ -233,12 +301,13 @@ const SignUp: React.FC<any> = () => {
 
             <Space top={25} />
             <CustomButton
-            disabled={disabled}
-            loading={loading}
-
-            text="Sign Up" 
-            id="finalsignup" 
-            show />
+              disabled={disabled}
+              loading={loading}
+              text="Sign Up"
+              id="finalsignup"
+              onClick={handleCreateAccount}
+              show
+            />
             <Space top={20} />
             <div className="d-flex justify-content-center mb-5">
               <div>

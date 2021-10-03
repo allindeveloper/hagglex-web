@@ -82,7 +82,7 @@ const CustomInput: FC<CustomInputProps> = ({
             )),
           className: className,
           style:{
-            marginTop:0
+            marginTop:0,
           },
           classes: {
             root: noStyles ? classes.noStyles : classes.root,
@@ -102,6 +102,7 @@ const CustomInput: FC<CustomInputProps> = ({
             width: inputWidth,
             fontWeight: fontWeight,
             fontSize: fontSize,
+            
             marginTop: 0,
           },
         }}
@@ -122,7 +123,7 @@ const CustomInput: FC<CustomInputProps> = ({
         fullWidth
       />
       {showError && (
-        <div className={classes.inputErrorContainer}>
+        <div className={classes.inputErrorContainer.concat(' d-flex')}>
           <div className={classes.inputerrorIcon}>
             <img src={redcircle} />
           </div>

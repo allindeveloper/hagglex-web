@@ -202,6 +202,21 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     left: '0px',
     padding: '46px'
 },
-
+countryCodeInput:{
+  backgroundColor:theme.palette.primary.light,
+  borderColor:'transparent',
+  '& fieldset':{
+    top:'-1px !important',
+    borderColor:'transparent',
+  }
+},
+countryCodeInputTextField: {
+  width: '90%',
+  marginLeft: 'auto',
+  marginRight: 'auto',            
+  paddingBottom: 0,
+  marginTop: 0,
+  fontWeight: 500
+},
 }));
 export default LoginStyles

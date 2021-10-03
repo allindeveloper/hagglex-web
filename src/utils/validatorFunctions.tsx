@@ -106,7 +106,7 @@ export const validationRules:any = {
     email: ['required','email'],
     input:['required','email'],
     password: ['required','min:8','password-validate'],
-    username: ['required','specialcha','string','min:3'],
+    username: ['required','specialcha','string','min:3','max:15'],
     phonenumber:['required','number'],
    
 }
