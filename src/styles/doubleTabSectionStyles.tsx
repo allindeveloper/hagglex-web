@@ -8,7 +8,7 @@ const doubleTabSectionStyles = makeStyles((theme: Theme) =>
     root: {
      borderRadius:5,
      boxShadow:'0px 3px 50px #00000021',
-     height:200,
+     height:500,
     },
     tabHeaderRoot:{
       cursor:'pointer',
@@ -41,6 +41,11 @@ const doubleTabSectionStyles = makeStyles((theme: Theme) =>
       '& p':{
         color:theme.palette.grey[500]
       }
+    },
+    components:{
+      marginLeft:30,
+      marginTop:20,
+      marginRight:30
     }
   })
 );

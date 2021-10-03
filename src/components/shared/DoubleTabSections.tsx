@@ -11,9 +11,9 @@ export interface IDoubleTabSections {
   handleClickTab?:(index:number)=>void
 }
 const DoubleTabSections: React.FC<IDoubleTabSections> = ({
-  selected,
-  componentOne,
-  componentTwo,
+  selected=1,
+  componentOne=(<div>Component One</div>),
+  componentTwo=(<div>Component Two</div>),
   labelOne,
   labelTwo,
   handleClickTab
@@ -44,8 +44,8 @@ const DoubleTabSections: React.FC<IDoubleTabSections> = ({
       </Grid>
       <Divider />
 
-      {selected === 1 && <div>{componentOne}</div>}
-      {selected === 2 && <div>{componentTwo}</div>}
+      {selected === 1 && <div className={classes.components}>{componentOne}</div>}
+      {selected === 2 && <div className={classes.components}>{componentTwo}</div>}
     </div>
   );
 };

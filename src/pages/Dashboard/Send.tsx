@@ -1,35 +1,135 @@
 import React, { useState } from "react";
 import DoubleTabSections from "../../components/shared/DoubleTabSections";
+import CustomButton from "../../components/ui/CustomButton/CustomButton";
+import CustomFormatInput from "../../components/ui/CustomInput/CustomFormatInput";
+import CustomInput from "../../components/ui/CustomInput/CustomInput";
+import { Space } from "../../components/ui/Space/Space";
 import dashboardStyles from "../../styles/dashboardStyles";
+import { NumberFormatValues } from "react-number-format";
+import { Theme, useMediaQuery } from "@mui/material";
+import updown from '../../assets/svg/updown.svg'
+type SendT = {
+  amount: string;
+  address: string;
+};
+const Send = () => {
+  const classes = dashboardStyles();
+  const [selected, setselected] = useState(1);
+  const matchesMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("md")
+  );
 
+  const handleClickTab = (index: number) => {
+    setselected(index);
+  };
+  const [data, setData] = useState<SendT>({
+    amount: "0.00",
+    address: "",
+  });
+  const handleCreateFormInputChange = (
+    input: string,
+    label: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { target } = e;
+    setData((prevState) => ({
+      ...prevState,
+      [input]: target?.value,
+    }));
+  };
 
-const Send = ()=>{
-
-    const classes = dashboardStyles()
-    const [selected, setselected] = useState(0)
-
-    const handleClickTab = (index:number)=>{
-        setselected(index)
-    }
-    return(
-        <div className={classes.sendRoot}>
-            <DoubleTabSections 
-            selected={selected}
-            labelOne={"External Wallet"}
-            labelTwo={'Hagglex Wallet'}
-            handleClickTab={handleClickTab}
-
-            componentOne={
-                <div>
-                    <p><b>Amount to Send</b></p>
+  const handleCustomValueChange = (
+    input: string,
+    values: NumberFormatValues
+  ) => {
+    debugger;
+    setData((prevState) => ({
+      ...prevState,
+      [input]: values?.value,
+    }));
+  };
+  return (
+    <div className={classes.sendRoot}>
+      <DoubleTabSections
+        selected={selected}
+        labelOne={"External Wallet"}
+        labelTwo={"Hagglex Wallet"}
+        handleClickTab={handleClickTab}
+        componentOne={
+          <div className={classes.componentOneRoot}>
+            <p className="mb-0">
+              <b>Amount to Send</b>
+            </p>
+            {/* <CustomInput 
+            value="0.00N" 
+            variant="standard"
+             /> */}
+            {/* <CustomFormatInput
+              variant="standard"
+              value={data.amount}
+              name="amount"
+              type="text"
+              endIcon={<div style={{position:'absolute',left:`${40}%`,top:'16%'}}><small><b>NGN</b></small></div>}
+              inputWidth={matchesMobile?55:30}
+              onValueChange={(values:NumberFormatValues)=>handleCustomValueChange('amount',values)}
+              /> */}
+              <div className="d-flex justify-content-start">
+                  <div>
+                  <CustomInput
+              variant="standard"
+              value={data.amount}
+              name="amount"
+              type="number"
+              fontWeight={400}
+              fontSize={40}
+              className="mt-0"
+              endIcon={
+                <div
+                  style={{
+                    position: "absolute",
+                    left: `${data.amount.length / 0.17}%`,
+                    bottom: "16%",
+                  }}
+                >
+                  <small className="ms-2">
+                    <b>NGN</b>
+                  </small>
                 </div>
-            }
-            componentTwo={
-                <div>
-                </div>
-            }
+              }
+              handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleCreateFormInputChange("amount", "Amount", e)
+              }
+            inputContainerclassName="mt-0"
             />
-        </div>
-    )
-}
-export default Send
+                      </div>
+                      <div className="mt-5 ms-1">
+                          <img className="mt-1" src={updown} width={'90%'} height={'90%'}/>
+                      </div>
+            </div>
+            
+            <Space top={20} />
+            <p className={classes.sendTo}>Send to</p>
+            <CustomInput
+              variant="outlined"
+              placeholder="Paste wallet address"
+              value={data.address}
+              name="address"
+              type="text"
+              handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleCreateFormInputChange("address", "Address", e)
+              }
+              customButtonText={
+                <div className="float-end mt-1 text-muted">
+                  <small>Transaction Fees: 0.000000000BTC</small>
+                </div>
+              }
+            />
+            <CustomButton text="Send BTC" className="mt-4" />
+          </div>
+        }
+        componentTwo={<div></div>}
+      />
+    </div>
+  );
+};
+export default Send;

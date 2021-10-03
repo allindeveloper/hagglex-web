@@ -7,7 +7,7 @@ const customInputStyle = makeStyles((theme:Theme) => ({
         transition: theme.transitions.create(['border-color', 'box-shadow']),
         '&:hover': {
             background:'transparent',
-          boxShadow:'0px 4px 10px 3px rgba(0, 0, 0, 0.11)'
+        //   boxShadow:'0px 4px 10px 3px rgba(0, 0, 0, 0.11)'
         },
     },
     textField:{
@@ -17,7 +17,6 @@ const customInputStyle = makeStyles((theme:Theme) => ({
         margin:0
     },
     inputErrorContainer:{
-        display:'flex',
         marginTop:'-7px'
     },
     multilineInput:{
