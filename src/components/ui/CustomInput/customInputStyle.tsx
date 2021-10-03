@@ -9,6 +9,10 @@ const customInputStyle = makeStyles((theme:Theme) => ({
             background:'transparent',
         //   boxShadow:'0px 4px 10px 3px rgba(0, 0, 0, 0.11)'
         },
+        marginTop:'-10px !important'
+        // '& fieldset':{
+        //     marginTop:10
+        // }
     },
     textField:{
         
@@ -23,9 +27,9 @@ const customInputStyle = makeStyles((theme:Theme) => ({
         paddingLeft:'15px',
     },
     input:{
-        paddingLeft:'15px !important',
+        paddingLeft:'8px !important',
         paddingTop:'13px !important',
-        paddingBottom:'13px !important',
+        paddingBottom:'10px !important',
         [theme.breakpoints.down("xl")]: {
             // width:300
           },
@@ -57,7 +61,7 @@ const customInputStyle = makeStyles((theme:Theme) => ({
         marginTop:-1
     },
     inputContainer:{
-        marginBottom:'15px',
+        marginBottom:'5px',
     }
 }));
 

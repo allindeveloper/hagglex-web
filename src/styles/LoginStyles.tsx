@@ -87,6 +87,7 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     right:'37%',
     top: '4%',
     backgroundColor:theme.palette.secondary.main,
+    opacity:0.2,
     [theme.breakpoints.down("md")]: {
       display:'none'
     } 
@@ -179,6 +180,7 @@ const LoginStyles = makeStyles((theme:Theme) => ({
     },
   },
   gotReferralCode: {
+    cursor:'pointer',
     color:theme.palette.primary.main,
     '& b':{
       fontWeight:600,

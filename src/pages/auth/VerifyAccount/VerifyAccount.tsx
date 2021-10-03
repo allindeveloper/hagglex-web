@@ -5,15 +5,17 @@ import { Space } from "../../../components/ui/Space/Space";
 import LoginStyles from "../../../styles/LoginStyles";
 import OnboardingRightContainer from "../../../components/shared/OnboardingRightContainer";
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory, useLocation } from "react-router-dom";
 import ReactCodeInput from "react-verification-code-input";
 import { useMutation } from "@apollo/client";
 import { VERIFY_USER } from "../../../graphql/services/auth";
 import AuthContext from "../../../context/AuthContext";
+import { maskEmail } from "../../../utils/globalUtils";
 
 const VerifyAccount: React.FC<any> = () => {
   const classes = LoginStyles();
   const history = useHistory();
+  const location = useLocation<any>();
   const [val, setVal] = useState("");
   const [verifyUser, { loading }] = useMutation(VERIFY_USER);
   const { setUserCredentials, setAuthAndCache, updateCurrentUser } =
@@ -41,6 +43,7 @@ const VerifyAccount: React.FC<any> = () => {
         );
         updateCurrentUser(verifyUserResponse.data?.verifyUser?.user);
         setUserCredentials(verifyUserResponse.data?.verifyUser?.user);
+        history.push('/app/dashboard')
       }
     }
   };
@@ -53,12 +56,12 @@ const VerifyAccount: React.FC<any> = () => {
             <Space top={60} />
             <Aux>
               <Typography variant="h5">
-                <b>Welcome </b>
+                <b>Verify Email </b>
               </Typography>
               <p>
                 <small>
                   Please type in the code that has been sent to
-                  {'sam.ubon@yopmail.com'.substring(4, 'sam.ubon@yopmail.com'.length - 5).replace(/\d/g,"*")}
+                  <label>{maskEmail(location.state?.email)}</label>
                 </small>
               </p>
               <Space top={60} />
@@ -71,7 +74,7 @@ const VerifyAccount: React.FC<any> = () => {
                     disabled={loading}
                     type="text"
                     onChange={handleChange}
-                    className="m-auto input-group memoCodeInput"
+                    className="m-auto input-group"
                   />
                   <Space top={20} />
                   {loading && <LinearProgress />}

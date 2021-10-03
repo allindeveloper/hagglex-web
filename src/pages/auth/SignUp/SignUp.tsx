@@ -16,7 +16,9 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { signUpErrors } from "../../../utils/validationStates";
 import { useRef } from "react";
-import { ISignUpRequestPayload, ISignUpResponse } from "../../../types/auth";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { ISignUpRequestPayload } from "../../../types/auth";
 import { validator, validatorAll } from "../../../utils/validatorFunctions";
 import { linkColor } from "../../../theme/default";
 import { useEffect } from "react";
@@ -27,9 +29,11 @@ import NumberFormat, { NumberFormatValues } from "react-number-format";
 import { countries } from "../../../constants/appConstants";
 import countryCurreny from "iso-country-currency";
 import AuthContext from "../../../context/AuthContext";
+import customInputStyle from "../../../components/ui/CustomInput/customInputStyle";
 const SignUp: React.FC<any> = () => {
   const [step, setstep] = useState<number>(1);
   const classes = LoginStyles();
+  const inputClasses = customInputStyle();
   const history = useHistory();
   const [togglePassword, settogglePassword] = useState(false);
   const matchesMobile = useMediaQuery((theme: Theme) =>
@@ -107,7 +111,12 @@ const SignUp: React.FC<any> = () => {
         setAuthAndCache(`${`Bearer`} ${registerRes.data?.register?.token}`);
         updateCurrentUser(registerRes.data?.register?.user);
         setUserCredentials(registerRes.data?.register?.user);
-        history.push("/verify-account");
+        history.push({
+          pathname: "/verify-account",
+          state: {
+            email: data.email,
+          },
+        });
       } else {
         resetForm();
       }
@@ -165,7 +174,7 @@ const SignUp: React.FC<any> = () => {
           <div className={classes.topLeftSquare}></div>
           <div className={classes.signupform}>
             <Aux>
-              <Space top={30} />
+              <Space top={45} />
               <Typography variant="h5">
                 <b>Create new account</b>
               </Typography>
@@ -207,7 +216,11 @@ const SignUp: React.FC<any> = () => {
                         style={{ color: linkColor }}
                         onClick={handleTogglePassword}
                       >
-                        {togglePassword ? "Hide" : "Show"}
+                        {togglePassword ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <RemoveRedEyeIcon />
+                        )}
                       </div>
                     }
                   />
@@ -227,8 +240,8 @@ const SignUp: React.FC<any> = () => {
                     placeholder="Enter username"
                     type={"text"}
                   />
-                  <Space top={10} />
-                  <label>Enter your phone number</label>
+                  <Space top={17} />
+                  <label className={inputClasses.inputLabel}>Enter your phone number</label>
 
                   <div className="d-flex justify-content-start">
                     <div className="mt-4">
@@ -261,7 +274,7 @@ const SignUp: React.FC<any> = () => {
                         format="(+#####)"
                       />
                     </div>
-                    <div>
+                    <div className="mt-2">
                       <CustomInput
                         errorText={err.phonenumber}
                         showError={err.phonenumber.length > 0}
@@ -300,7 +313,7 @@ const SignUp: React.FC<any> = () => {
               <CustomInput
                 value={data.referralCode}
                 name="referralCode"
-                inputContainerclassName="mt-0 pt-0"
+                inputContainerclassName="mt-2 pt-0"
                 handleChange={(e) =>
                   handleCreateFormInputChange(
                     "referralCode",
