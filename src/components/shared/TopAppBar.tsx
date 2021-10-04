@@ -8,7 +8,6 @@ import topnavStyles from "../../styles/topnavStyles";
 import CustomMenuWrapper from "../ui/CustomMenuWrapper/CustomMenuWrapper";
 import { Avatar, Badge, Hidden, MenuItem } from "@mui/material";
 import CustomIcon from "../ui/CustomIcon/CustomIcon";
-import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -84,9 +83,7 @@ const TopAppBar: React.FC<TopAppBarProps> = ({ handleDrawerToggle }) => {
           </div>
         </div>
       </Toolbar>
-      {/* <div className={classes.pageDescription}>
-                   <Typography variant="caption">Hi Uchechi, here is the list of all the transaction you’ve performed. </Typography>
-                </div> */}
+     
     </AppBar>
   );
 };

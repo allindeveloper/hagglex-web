@@ -66,7 +66,7 @@ const VerifyAccount: React.FC<any> = () => {
               <p>
                 <small>
                   Please type in the code that has been sent to
-                  <label>{maskEmail(location.state?.email)}</label>
+                  <label><b>{maskEmail(location.state?.email)}</b></label>
                 </small>
               </p>
               <Space top={60} />
