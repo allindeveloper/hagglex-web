@@ -4,7 +4,7 @@ import routes  from '../../constants/routes';
 import GuardRoute from './guard';
 import menuitems from '../../constants/menuitems';
 import ScrollToTop from '../ui/ScrollToTop';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, LinearProgress } from '@mui/material';
 import SideNav from '../shared/SideNav';
 import wrapperStyles from '../../styles/wrapperStyles';
 import TopAppBar from '../shared/TopAppBar';
@@ -48,7 +48,7 @@ const Wrapper = () => {
                 {/* <div className={classes.toolbar} /> */}
                 <>
                     <Suspense 
-                    fallback={<div>Loading</div>}
+                    fallback={<div className="ms-4 me-4"><LinearProgress /></div>}
                     >
                         <Switch>
                             {menu}

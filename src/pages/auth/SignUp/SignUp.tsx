@@ -30,8 +30,8 @@ import { countries } from "../../../constants/appConstants";
 import countryCurreny from "iso-country-currency";
 import AuthContext from "../../../context/AuthContext";
 import customInputStyle from "../../../components/ui/CustomInput/customInputStyle";
+import AppSettingsContext from "../../../context/AppSettingsContext";
 const SignUp: React.FC<any> = () => {
-  const [step, setstep] = useState<number>(1);
   const classes = LoginStyles();
   const inputClasses = customInputStyle();
   const history = useHistory();
@@ -44,13 +44,15 @@ const SignUp: React.FC<any> = () => {
 
   const [disabled, setdisabled] = useState(false);
   const [showReferral, setshowReferral] = useState(false);
-  const [register, { loading }] = useMutation(REGISTER_USER);
   const [data, setData] = useState<ISignUpRequestPayload>({
     email: "",
     password: "",
     username: "",
     phonenumber: "",
   });
+  const [uiError, setuiError] = useState<any>();
+  const { updateshowdefaultAlert } = useContext(AppSettingsContext);
+
   const { setUserCredentials, setAuthAndCache, updateCurrentUser } =
     useContext(AuthContext);
   const [countryCode, setcountryCode] = useState("ng");
@@ -58,6 +60,11 @@ const SignUp: React.FC<any> = () => {
     value: "234",
     floatValue: 0,
     formattedValue: "+234",
+  });
+  const [register, { loading }] = useMutation(REGISTER_USER, {
+    onError: (error) => {
+      updateshowdefaultAlert(true, error.message, "error");
+    },
   });
   const resetForm = () => {
     setData({
@@ -94,32 +101,39 @@ const SignUp: React.FC<any> = () => {
         item.code.toLocaleLowerCase() === countryCode.toLocaleLowerCase()
     );
     const currency = countryCurreny.getAllInfoByISO(countryCode).currency;
-    const payload: ISignUpRequestPayload = {
+    let payload: ISignUpRequestPayload = {
       email: data.email,
       username: data.username,
       password: data.password,
       country: ctry?.[0].label ?? "Nigeria",
-      phonenumber: data.phonenumber,
+      phonenumber: `${codeValue.value}${data.phonenumber}`,
       currency: currency || "NGN",
     };
-
-    const registerRes = await register({
-      variables: payload,
-    });
-    if (registerRes) {
-      if (!registerRes.data?.register?.user.emailVerified) {
-        setAuthAndCache(`${`Bearer`} ${registerRes.data?.register?.token}`);
-        updateCurrentUser(registerRes.data?.register?.user);
-        setUserCredentials(registerRes.data?.register?.user);
-        history.push({
-          pathname: "/verify-account",
-          state: {
-            email: data.email,
-          },
-        });
-      } else {
-        resetForm();
+    if(data.referralCode !== ""){
+      payload.referralCode = data.referralCode
+    }
+    try {
+      const registerRes = await register({
+        variables: payload,
+      });
+      console.log('registerRes',registerRes)
+      if (!registerRes.errors) {
+        if (!registerRes.data?.register?.user.emailVerified) {
+          setAuthAndCache(`${`Bearer`} ${registerRes.data?.register?.token}`);
+          updateCurrentUser(registerRes.data?.register?.user);
+          setUserCredentials(registerRes.data?.register?.user);
+          history.push({
+            pathname: "/verify-account",
+            state: {
+              email: data.email,
+            },
+          });
+        } else {
+          resetForm();
+        }
       }
+    } catch (e) {
+      setuiError(e);
     }
     setdisabled(false);
   };
@@ -151,9 +165,9 @@ const SignUp: React.FC<any> = () => {
   const handleShowReferralInput = () => {
     setshowReferral(true);
   };
-  useEffect(() => {
-    enterHandler("finalsignup");
-  });
+  // useEffect(() => {
+  //   enterHandler("signupbutton");
+  // },[]);
   const onValueChange = (values: NumberFormatValues) => {
     const filteredFlag = countries.filter(
       (item) => item.phone === values.value
@@ -241,7 +255,9 @@ const SignUp: React.FC<any> = () => {
                     type={"text"}
                   />
                   <Space top={17} />
-                  <label className={inputClasses.inputLabel}>Enter your phone number</label>
+                  <label className={inputClasses.inputLabel}>
+                    Enter your phone number
+                  </label>
 
                   <div className="d-flex justify-content-start">
                     <div className="mt-4">
@@ -314,6 +330,8 @@ const SignUp: React.FC<any> = () => {
                 value={data.referralCode}
                 name="referralCode"
                 inputContainerclassName="mt-2 pt-0"
+                noStyles
+                inputHeight={15}
                 handleChange={(e) =>
                   handleCreateFormInputChange(
                     "referralCode",
@@ -333,7 +351,7 @@ const SignUp: React.FC<any> = () => {
               disabled={disabled}
               loading={loading}
               text="Sign Up"
-              id="finalsignup"
+              id="signupbutton"
               onClick={handleCreateAccount}
               show
             />

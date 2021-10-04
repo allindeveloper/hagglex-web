@@ -30,7 +30,7 @@ const dashboardStyles = makeStyles((theme: Theme) =>
       justifyContent:'space-between',
       flexWrap:'wrap',
       alignItems:'center',
-      '& p':{
+      '& section':{
         '& label':{
           fontWeight:400
         }
@@ -81,8 +81,8 @@ const dashboardStyles = makeStyles((theme: Theme) =>
     },
     listsStatsFilter:{
       background:'#F9F9F9 0% 0% no-repeat padding-box',
-      // width:200,
-      height:40,
+      borderRadius:5,
+      height:50,
       display:'flex',
       justifyContent:'space-between'
     },
@@ -173,7 +173,30 @@ const dashboardStyles = makeStyles((theme: Theme) =>
         marginRight:theme.spacing(3),
       },
     },
-
+    sendOnly:{
+      backgroundColor:theme.palette.primary.light,
+      opacity:1,
+      display:'flex',
+      justifyContent:'flex-start',
+      marginLeft:50,
+      marginTop:15,
+      marginRight:50,
+      borderRadius:20,
+      paddingTop:4,
+      paddingLeft:20,
+      paddingRight:20,
+      paddingBottom:4,
+      alignItems:'center',
+      [theme.breakpoints.down("sm")]: {
+        margin: '10px 10px 10px 10px',
+        '& small':{
+          fontSize:12
+        }
+      },
+      '& small':{
+        color:theme.palette.primary.main,
+      }
+    },
     componentOneRoot:{
       '& p':{
         color:'#000000',

@@ -2,7 +2,8 @@ import tinycolor from "tinycolor2";
 
 export const primary = "#2E1963";
 export const lightPrimary = "#F0EBFF";
-const secondary = "#4F388A";
+export const secondary = "#4F388A";
+export const inputFocus = '#BA3AF9';
 const warning = "#EA3223";
 const success = "#49B621";
 const info = "rgba(24, 25, 31, 0.5)s";
@@ -86,7 +87,7 @@ export default {
       fontFamily: [
         '-apple-system',
         'BlinkMacSystemFont',
-        'Inter',
+        'Basis Grotesque Pro',
         'Roboto',
       ].join(','),
       
@@ -95,6 +96,11 @@ export default {
     MuiDivider:{
       light:{
         backgroundColor:'#F3F3F3'
+      }
+    },
+    MuiBadge:{
+      root:{
+        color:'green'
       }
     }
    

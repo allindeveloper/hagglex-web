@@ -5,6 +5,7 @@ import customInputStyle from "./customInputStyle";
 import clsx from "clsx";
 import redcircle from "../../../assets/svg/redcircle.svg";
 import CustomCircleLoader from "../Loader/CustomCircleLoader";
+import { inputFocus } from "../../../theme/default";
 
 export interface CustomInputProps {
   type?: string;
@@ -31,7 +32,7 @@ export interface CustomInputProps {
   variant?: TextFieldProps["variant"];
   fontWeight?: React.CSSProperties["fontWeight"];
   fontSize?: React.CSSProperties["fontSize"];
-  inputContainerclassName?:string
+  inputContainerclassName?: string;
 }
 
 const CustomInput: FC<CustomInputProps> = ({
@@ -58,13 +59,24 @@ const CustomInput: FC<CustomInputProps> = ({
   fontWeight,
   fontSize,
   variant = "standard",
-  inputContainerclassName
+  inputContainerclassName,
 }) => {
   const classes = customInputStyle();
+  const [isFocus, setisFocus] = useState(false);
+  const handleInputFocus = () => {
+    setisFocus(true);
+  };
+  const handleHideFocus = () => {
+    setisFocus(false);
+  };
   return (
     <div className={classes.inputContainer}>
       {labelText && (
-        <label className={clsx(classes.inputLabel)} htmlFor={id}>
+        <label
+          style={{ color: isFocus ? inputFocus : "" }}
+          className={clsx(classes.inputLabel)}
+          htmlFor={id}
+        >
           {labelText}
         </label>
       )}{" "}
@@ -72,6 +84,9 @@ const CustomInput: FC<CustomInputProps> = ({
         id={id}
         InputProps={{
           startAdornment: startIcon,
+          autoFocus: false,
+          onFocus: handleInputFocus,
+          onBlur: handleHideFocus,
           endAdornment:
             endIcon ||
             (loading && (
@@ -81,11 +96,12 @@ const CustomInput: FC<CustomInputProps> = ({
               </div>
             )),
           className: className,
-          style:{
-            marginTop:0,
+          style: {
+            marginTop: 0,
           },
           classes: {
             root: noStyles ? classes.noStyles : classes.root,
+            focused: !noStyles ? classes.inputFocused : "",
             input: !noStyles
               ? multiline
                 ? classes.multilineInput
@@ -102,7 +118,7 @@ const CustomInput: FC<CustomInputProps> = ({
             width: inputWidth,
             fontWeight: fontWeight,
             fontSize: fontSize,
-            
+
             marginTop: 0,
           },
         }}
@@ -123,7 +139,7 @@ const CustomInput: FC<CustomInputProps> = ({
         fullWidth
       />
       {showError && (
-        <div className={classes.inputErrorContainer.concat(' d-flex')}>
+        <div className={classes.inputErrorContainer.concat(" d-flex")}>
           <div className={classes.inputerrorIcon}>
             <img src={redcircle} />
           </div>

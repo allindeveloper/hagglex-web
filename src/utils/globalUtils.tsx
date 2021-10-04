@@ -16,10 +16,7 @@ export const enterHandler = (id?: string) => {
 };
 export const maskEmail = (email:string)=>{
   if (email) {
-    // if (email.length > 20) {
-    //   return email.substring(0, 20) + "...";
-    // }
-    let firstPart = email.substring(0,10)
+    let firstPart = email.substring(0,5)
     let secondPart = email.split("@")
     let newEmail = `${firstPart}*******${secondPart?.[1]}`
     return newEmail;
@@ -27,6 +24,22 @@ export const maskEmail = (email:string)=>{
     return "";
   }
 }
+export const invokeAvatarInitials = (name:string) => {
+  let firstPart,secondPart;
+  if(name){
+  if(name.includes(" ")){
+    const newName = name.split(" ")
+    firstPart = newName?.[0]
+    secondPart = newName?.[1]
+  }else{
+    firstPart = name.charAt(0).toUpperCase()
+    secondPart = name.charAt(1).toUpperCase()
+  }
+  return `${firstPart}${secondPart}`
+}else{
+  return ""
+}
+};
 export const isValidUrl = (value: string) => {
   var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name

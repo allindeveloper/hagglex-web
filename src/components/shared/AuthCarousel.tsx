@@ -55,6 +55,7 @@ const AuthCarousel = ({ children }: IAuthCarousel) => {
               {children &&
                 children?.map((item, i) => (
                   <div
+                  key={i}
                    onClick={()=>handleSetSlide(i)}
                     className={clsx(
                       index === i

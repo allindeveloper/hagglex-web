@@ -15,7 +15,7 @@ const GlobalStyles = makeStyles((theme: Theme) =>
             backgroundColor:'#F3F3F3'
           }
           // backgroundColor:'#F3F3F3'
-        }
+        },
       },
       selectRootPagination:{
         position:'absolute',

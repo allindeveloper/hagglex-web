@@ -6,10 +6,15 @@ import { Space } from "../../components/ui/Space/Space";
 import dashboardStyles from "../../styles/dashboardStyles";
 import { Divider, Theme, useMediaQuery } from "@mui/material";
 import updown from "../../assets/svg/updown.svg";
+import infoicon from '../../assets/svg/infoicon.svg'
+
+
+
 type SendT = {
   amount: string;
   address: string;
 };
+
 const Send = () => {
   const classes = dashboardStyles();
   const [selected, setselected] = useState(1);
@@ -99,6 +104,8 @@ const Send = () => {
               value={data.address}
               name="address"
               type="text"
+              noStyles
+              inputHeight={15}
               handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleCreateFormInputChange("address", "Address", e)
               }
@@ -109,6 +116,14 @@ const Send = () => {
               }
             />
             <CustomButton text="Send BTC" className="mt-4" />
+            <div className={classes.sendOnly}>
+              <div>
+                <img src={infoicon} width={25}/>
+                </div>
+                <div className="ms-3 pt-0 pb-1">
+                  <b><small>Send only BTC to this deposit address</small></b>
+                </div>
+            </div>
             <Space top={60} />
             <Divider light />
             <Space top={25} />

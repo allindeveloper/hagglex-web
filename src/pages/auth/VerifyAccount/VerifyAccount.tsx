@@ -23,6 +23,11 @@ const VerifyAccount: React.FC<any> = () => {
   const handleChange = (vals: string) => {
     setVal(vals);
   };
+  useEffect(()=>{
+    if(!location.state?.email){
+      history.push('/')
+    }
+  })
 
   useEffect(() => {
     if (val !== "" && val.length === 6) {
@@ -61,7 +66,7 @@ const VerifyAccount: React.FC<any> = () => {
               <p>
                 <small>
                   Please type in the code that has been sent to
-                  <label>{maskEmail(location.state?.email)}</label>
+                  <label><b>{maskEmail(location.state?.email)}</b></label>
                 </small>
               </p>
               <Space top={60} />
