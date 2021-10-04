@@ -1,4 +1,4 @@
-# Haggle Web UI Implementation  (React/TS/Graphql)
+# Hagglex Web UI Implementation  (React/TS/Graphql)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Adobe XD Design
