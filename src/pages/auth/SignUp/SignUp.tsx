@@ -330,6 +330,8 @@ const SignUp: React.FC<any> = () => {
                 value={data.referralCode}
                 name="referralCode"
                 inputContainerclassName="mt-2 pt-0"
+                noStyles
+                inputHeight={15}
                 handleChange={(e) =>
                   handleCreateFormInputChange(
                     "referralCode",

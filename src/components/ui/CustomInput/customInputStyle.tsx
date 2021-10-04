@@ -15,10 +15,13 @@ const customInputStyle = makeStyles((theme: Theme) => ({
     marginTop: "-10px !important",
   },
   inputFocused: {
-    borderBottom: "2px solid #BA3AF9",
+    borderBottom: "1px solid #BA3AF9",
   },
   noStyles: {
     margin: 0,
+    "&:after": {
+        borderBottom: "none !important",
+      },
   },
   inputErrorContainer: {
     marginTop: "-7px",
