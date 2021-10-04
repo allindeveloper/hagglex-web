@@ -106,7 +106,7 @@ const LoginStyles = makeStyles((theme:Theme) => ({
   },
   signupform: {
     width: '74%',
-    zIndex:99999,
+    zIndex:10,
     position:'relative',
     backgroundColor:theme.palette.primary.contrastText,
     paddingLeft:theme.spacing(10),
