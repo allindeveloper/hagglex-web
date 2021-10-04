@@ -8,7 +8,6 @@ import { useHistory } from "react-router";
 import { Space } from "../../components/ui/Space/Space";
 import Send from "./Send";
 import clsx from "clsx";
-
 type currencyType = "USD" | "NGN";
 type walletType = "LIST" | "STATS";
 const Dashboard = () => {

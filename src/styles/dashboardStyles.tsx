@@ -173,7 +173,23 @@ const dashboardStyles = makeStyles((theme: Theme) =>
         marginRight:theme.spacing(3),
       },
     },
-
+    sendOnly:{
+      backgroundColor:theme.palette.primary.light,
+      opacity:1,
+      display:'flex',
+      justifyContent:'flex-start',
+      marginLeft:50,
+      marginTop:15,
+      marginRight:50,
+      borderRadius:20,
+      paddingTop:4,
+      paddingLeft:20,
+      paddingRight:20,
+      paddingBottom:4,
+      '& small':{
+        color:theme.palette.primary.main,
+      }
+    },
     componentOneRoot:{
       '& p':{
         color:'#000000',
