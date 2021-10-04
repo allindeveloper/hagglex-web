@@ -26,8 +26,9 @@ const authCarouselStyles = makeStyles((theme: Theme) =>
         '& p':{
           lineHeight:2,
           fontSize:14,
-          marginLeft:100,
-          marginRight:100,
+          width:500,
+          marginLeft:'auto',
+          marginRight:'auto',
           marginBottom:30
         }
       },
