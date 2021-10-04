@@ -56,7 +56,7 @@ const SignIn: React.FC<any> = () => {
     validatorAll(
       [
         { name: "input", value: data.input, label: "Email" },
-        { name: "password", value: data.password, label: "Password" },
+        // { name: "password", value: data.password, label: "Password" },
       ],
       "SignIn",
       setError,
