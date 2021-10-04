@@ -87,7 +87,7 @@ export default {
       fontFamily: [
         '-apple-system',
         'BlinkMacSystemFont',
-        'Inter',
+        'Basis Grotesque Pro',
         'Roboto',
       ].join(','),
       
