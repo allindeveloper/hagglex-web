@@ -212,7 +212,7 @@ const SignIn: React.FC<any> = () => {
             </div>
 
             <Space top={40} />
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between mb-5">
               <div className={classes.needHelp}>
                 <small>Need help?</small>
               </div>
