@@ -186,6 +186,13 @@ const dashboardStyles = makeStyles((theme: Theme) =>
       paddingLeft:20,
       paddingRight:20,
       paddingBottom:4,
+      alignItems:'center',
+      [theme.breakpoints.down("sm")]: {
+        margin: '10px 10px 10px 10px',
+        '& small':{
+          fontSize:12
+        }
+      },
       '& small':{
         color:theme.palette.primary.main,
       }

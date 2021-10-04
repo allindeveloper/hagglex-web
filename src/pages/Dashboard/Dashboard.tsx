@@ -71,8 +71,8 @@ const Dashboard = () => {
           <div className={classes.leftCard}>
             <div className="d-flex justify-content-between">
               <div className="ms-4 mt-4 mb-2">
-                <Typography className="mt-1">
-                  <h5><b>Wallet</b></h5>
+                <Typography className="mt-1" component="h5">
+                  <p><b>Wallet</b></p>
                 </Typography>
               </div>
               <div className={classes.listsStatsFilter.concat(" me-4 mt-4")}>

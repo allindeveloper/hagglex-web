@@ -133,6 +133,9 @@ const LoginStyles = makeStyles((theme:Theme) => ({
       paddingLeft:0,
       paddingRight:0
     },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: '20%',
+    },
   },
   signinform:{
     width: '65%',
