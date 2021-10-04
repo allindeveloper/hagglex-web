@@ -56,7 +56,7 @@ const SignIn: React.FC<any> = () => {
     validatorAll(
       [
         { name: "input", value: data.input, label: "Email" },
-        // { name: "password", value: data.password, label: "Password" },
+        { name: "password", value: data.password, label: "Password" },
       ],
       "SignIn",
       setError,
@@ -107,14 +107,13 @@ const SignIn: React.FC<any> = () => {
       ...prevState,
       [input]: target?.value,
     }));
-    if(input !== 'password'){
       validator(
         { name: input, value: target.value, label: label },
         "SignIn",
         setError,
         err
       );
-    }
+ 
     
   };
 
