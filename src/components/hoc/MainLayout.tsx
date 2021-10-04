@@ -12,7 +12,7 @@ import AuthLayout from './AuthLayout';
 import ScrollToTop from '../ui/ScrollToTop';
 import VerifyAccount from '../../pages/auth/VerifyAccount/VerifyAccount';
 import AppSettingsContext from '../../context/AppSettingsContext';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, LinearProgress, Snackbar } from '@mui/material';
 
 
 interface MainLayoutProps {
@@ -25,7 +25,7 @@ const MainLayout: FC<MainLayoutProps> = () => {
     return (
         <Aux>
             <ScrollToTop>
-            <Suspense fallback={<div>Loading Main Layout</div>}>
+            <Suspense fallback={<div><LinearProgress /></div>}>
                 <Switch>
                     {/* All unthenticated Routes will go here */}
                     <Route exact path="/">

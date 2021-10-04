@@ -104,6 +104,8 @@ const Send = () => {
               value={data.address}
               name="address"
               type="text"
+              noStyles
+              inputHeight={15}
               handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleCreateFormInputChange("address", "Address", e)
               }

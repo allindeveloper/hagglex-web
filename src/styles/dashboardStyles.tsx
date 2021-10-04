@@ -30,7 +30,7 @@ const dashboardStyles = makeStyles((theme: Theme) =>
       justifyContent:'space-between',
       flexWrap:'wrap',
       alignItems:'center',
-      '& p':{
+      '& section':{
         '& label':{
           fontWeight:400
         }
@@ -81,8 +81,8 @@ const dashboardStyles = makeStyles((theme: Theme) =>
     },
     listsStatsFilter:{
       background:'#F9F9F9 0% 0% no-repeat padding-box',
-      // width:200,
-      height:40,
+      borderRadius:5,
+      height:50,
       display:'flex',
       justifyContent:'space-between'
     },

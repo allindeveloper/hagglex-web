@@ -37,9 +37,9 @@ const Dashboard = () => {
           <div>
             <small className="m-0">My Asset Portfolio</small>
 
-            <p className="m-0 d-flex">
+            <section className="m-0 d-flex">
               <h1>N0.00</h1> <label className="ms-2">NGN</label>
-            </p>
+            </section>
           </div>
           <div className={classes.topCardContentsRight}>
             <div
@@ -72,7 +72,7 @@ const Dashboard = () => {
             <div className="d-flex justify-content-between">
               <div className="ms-4 mt-4 mb-2">
                 <Typography className="mt-1">
-                  <b>Wallet</b>
+                  <h5><b>Wallet</b></h5>
                 </Typography>
               </div>
               <div className={classes.listsStatsFilter.concat(" me-4 mt-4")}>

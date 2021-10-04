@@ -26,6 +26,7 @@ export const maskEmail = (email:string)=>{
 }
 export const invokeAvatarInitials = (name:string) => {
   let firstPart,secondPart;
+  if(name){
   if(name.includes(" ")){
     const newName = name.split(" ")
     firstPart = newName?.[0]
@@ -35,6 +36,9 @@ export const invokeAvatarInitials = (name:string) => {
     secondPart = name.charAt(1).toUpperCase()
   }
   return `${firstPart}${secondPart}`
+}else{
+  return ""
+}
 };
 export const isValidUrl = (value: string) => {
   var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
