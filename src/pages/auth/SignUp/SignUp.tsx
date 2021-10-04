@@ -165,9 +165,9 @@ const SignUp: React.FC<any> = () => {
   const handleShowReferralInput = () => {
     setshowReferral(true);
   };
-  useEffect(() => {
-    enterHandler("finalsignup");
-  },[]);
+  // useEffect(() => {
+  //   enterHandler("signupbutton");
+  // },[]);
   const onValueChange = (values: NumberFormatValues) => {
     const filteredFlag = countries.filter(
       (item) => item.phone === values.value
@@ -349,7 +349,7 @@ const SignUp: React.FC<any> = () => {
               disabled={disabled}
               loading={loading}
               text="Sign Up"
-              id="finalsignup"
+              id="signupbutton"
               onClick={handleCreateAccount}
               show
             />

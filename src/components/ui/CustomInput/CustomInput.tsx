@@ -5,6 +5,7 @@ import customInputStyle from "./customInputStyle";
 import clsx from "clsx";
 import redcircle from "../../../assets/svg/redcircle.svg";
 import CustomCircleLoader from "../Loader/CustomCircleLoader";
+import { inputFocus } from "../../../theme/default";
 
 export interface CustomInputProps {
   type?: string;
@@ -61,10 +62,17 @@ const CustomInput: FC<CustomInputProps> = ({
   inputContainerclassName
 }) => {
   const classes = customInputStyle();
+  const [isFocus, setisFocus] = useState(false)
+  const handleInputFocus = ()=>{
+    setisFocus(true)
+  }
+  const handleHideFocus = ()=>{
+    setisFocus(false)
+  }
   return (
     <div className={classes.inputContainer}>
       {labelText && (
-        <label className={clsx(classes.inputLabel)} htmlFor={id}>
+        <label style={{color:isFocus? inputFocus:''}} className={clsx(classes.inputLabel)} htmlFor={id}>
           {labelText}
         </label>
       )}{" "}
@@ -72,6 +80,9 @@ const CustomInput: FC<CustomInputProps> = ({
         id={id}
         InputProps={{
           startAdornment: startIcon,
+          autoFocus:false,
+          onFocus:handleInputFocus,
+          onBlur:handleHideFocus,
           endAdornment:
             endIcon ||
             (loading && (
@@ -86,6 +97,7 @@ const CustomInput: FC<CustomInputProps> = ({
           },
           classes: {
             root: noStyles ? classes.noStyles : classes.root,
+            focused:classes.inputFocused,
             input: !noStyles
               ? multiline
                 ? classes.multilineInput

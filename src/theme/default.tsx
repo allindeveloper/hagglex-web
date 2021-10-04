@@ -3,6 +3,7 @@ import tinycolor from "tinycolor2";
 export const primary = "#2E1963";
 export const lightPrimary = "#F0EBFF";
 export const secondary = "#4F388A";
+export const inputFocus = '#BA3AF9';
 const warning = "#EA3223";
 const success = "#49B621";
 const info = "rgba(24, 25, 31, 0.5)s";
